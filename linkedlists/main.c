@@ -14,6 +14,8 @@ int main()
   imprimirLista(ll);
   printf("\n");
   removerElementoEmPosicao(ll, 0);
+  removerElementoEmPosicao(ll, -2);
   imprimirLista(ll);
   printf("\n");
+  obterElementoEmPosicao(ll,12);
 }

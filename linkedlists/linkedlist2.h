@@ -36,19 +36,19 @@ void inserirElementoNoFim(struct linkedlist *lista, int valor)
   if (lista->cabeca == NULL)
   {
     lista->cabeca = novo;
+    return;
   }
-  else
+
+  struct no *aux = lista->cabeca;
+
+  while (aux != NULL)
   {
-    struct no *aux = lista->cabeca;
-    while (aux != NULL)
+    if (aux->prox == NULL)
     {
-      if (aux->prox == NULL)
-      {
-        aux->prox = novo;
-        novo->prox = NULL;
-      }
-      aux = aux->prox;
+      aux->prox = novo;
+      novo->prox = NULL;
     }
+    aux = aux->prox;
   }
 
   lista->qtdade++;
@@ -61,13 +61,13 @@ void inserirElementoNoInicio(struct linkedlist *lista, int valor)
   if (lista->cabeca == NULL)
   {
     lista->cabeca = novo;
+    return;
   }
-  else
-  {
-    struct no *temp = lista->cabeca;
-    lista->cabeca = novo;
-    novo->prox = temp;
-  }
+
+  struct no *temp = lista->cabeca;
+  lista->cabeca = novo;
+  novo->prox = temp;
+
   lista->qtdade++;
 }
 
@@ -81,11 +81,13 @@ int obterElementoEmPosicao(struct linkedlist *lista, int posicao)
   if (posicao < 0 || posicao > lista->qtdade - 1)
   {
     printf("Index invalido");
+    exit(-1);
   }
 
   if (lista->cabeca == NULL)
   {
     printf("A lista esta vazia");
+    exit(-1);
   }
 
   struct no *aux = lista->cabeca;
@@ -94,9 +96,7 @@ int obterElementoEmPosicao(struct linkedlist *lista, int posicao)
   while (aux != NULL)
   {
     if (count == posicao)
-    {
       return aux->val;
-    }
     aux = aux->prox;
     count++;
   }
@@ -107,7 +107,7 @@ void removerElementoEmPosicao(struct linkedlist *lista, int posicao)
   if (posicao < 0 || posicao > lista->qtdade - 1)
   {
     printf("Posicao invalida: %d", posicao);
-    return;
+    exit(-1);
   }
 
   struct no *aux = lista->cabeca;
@@ -126,7 +126,6 @@ void removerElementoEmPosicao(struct linkedlist *lista, int posicao)
   {
     if (count == posicao - 1)
     {
-
       // Guardo endereço do elemento a ser removido e do posterior
       struct no *temp = aux->prox;
       struct no *front = temp->prox;
