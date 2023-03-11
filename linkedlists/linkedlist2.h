@@ -80,7 +80,7 @@ int obterElementoEmPosicao(struct linkedlist *lista, int posicao)
 {
   if (posicao < 0 || posicao > lista->qtdade - 1)
   {
-    printf("Index invalido");
+    printf("Posicao invalida: %d", posicao);
     exit(-1);
   }
 
