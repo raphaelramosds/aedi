@@ -22,29 +22,29 @@ int obterElementoEmPosicao(struct arraylist *lista, int posicao)
     if (posicao < 0 || posicao > lista->capacidade - 1)
     {
         printf("Posicao invalida: %d", posicao);
-        return 0;
+        exit(-1);
     }
+
     return lista->vetor[posicao];
 }
 
 void duplicarCapacidade(struct arraylist *lista)
 {
-    int* novaLista = (int*) calloc(2 * lista->capacidade, sizeof(int));
+    int *novaLista = (int *)calloc(2 * lista->capacidade, sizeof(int));
 
-    for(int i = 0; i < lista->capacidade; i++)
+    for (int i = 0; i < lista->capacidade; i++)
         novaLista[i] = lista->vetor[i];
 
     free(lista->vetor);
 
     lista->vetor = novaLista;
-    lista->capacidade = 2*lista->capacidade;
+    lista->capacidade = 2 * lista->capacidade;
 }
 
 void inserirElementoNoFim(struct arraylist *lista, int valor)
 {
-    if (lista->qtdade == lista->capacidade){
+    if (lista->qtdade == lista->capacidade)
         duplicarCapacidade(lista);
-    }
 
     lista->vetor[lista->qtdade] = valor;
     lista->qtdade++;
@@ -57,7 +57,13 @@ void inserirElementoEmPosicao(struct arraylist *lista, int valor, int posicao)
 
 void atualizarElemento(struct arraylist *lista, int valor, int posicao)
 {
-    // TODO
+    if (posicao < 0 || posicao > lista->capacidade - 1)
+    {
+        printf("Posicao invalida: %d", posicao);
+        exit(-1);
+    }
+
+    lista->vetor[posicao] = valor;
 }
 
 void removerElementoNoFim(struct arraylist *lista)

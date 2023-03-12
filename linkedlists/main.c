@@ -11,11 +11,7 @@ int main()
   inserirElementoNoFim(ll, 100);
   inserirElementoNoInicio(ll, 20);
   inserirElementoNoInicio(ll, 30);
-  imprimirLista(ll);
-  printf("\n");
   removerElementoEmPosicao(ll, 0);
   removerElementoEmPosicao(ll, -2);
   imprimirLista(ll);
-  printf("\n");
-  obterElementoEmPosicao(ll,12);
 }
