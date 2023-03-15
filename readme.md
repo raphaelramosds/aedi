@@ -10,6 +10,7 @@ Lists implementations must follow this interface
 package list
 
 type IList interface {
+	Init(length int)
 	Add(value int)
 	AddOnIndex(value int, index int)
 	Remove()
@@ -21,3 +22,5 @@ type IList interface {
 ```
 
 **Note:** `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
+
+**Note:** `tam` is the amount elements appendend in the list
