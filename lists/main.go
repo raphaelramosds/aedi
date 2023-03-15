@@ -8,15 +8,16 @@ func main() {
 
 	var ll helper.LinkedList
 
-	ll.Add(10)
-	ll.Add(13)
+	ll.Add(4)
+	ll.Add(5)
+	ll.Add(2)
+	ll.RemoveOnIndex(2)
+	ll.RemoveOnIndex(1)
 	ll.Add(9)
-	ll.Add(19)
-
-	ll.AddOnIndex(20, 2)
-	ll.AddOnIndex(66, 1)
-	ll.AddOnIndex(0, 6)
-
-	ll.Set(3, 1)
+	ll.Add(3)
+	ll.Add(7)
+	ll.Add(12)
+	ll.AddOnIndex(19, 4)
+	ll.RemoveOnIndex(3)
 
 }
