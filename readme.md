@@ -23,4 +23,4 @@ type IList interface {
 
 **Note:** `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
 
-**Note:** `tam` is the amount elements appendend in the list
+**Note:** `tam` represents how many elements you've already added into the list
