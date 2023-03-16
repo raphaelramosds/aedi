@@ -48,18 +48,32 @@ func (ll *LinkedList) Add(value int) {
 
 	newNode := initNode(value)
 
-	if ll.head == nil {
+	// O(1) case
+
+	if ll.tam == 0 {
+
 		ll.head = newNode
+
 	} else {
-		temp := ll.head
-		ll.head = newNode
-		newNode.next = temp
+
+		// O(n) case
+
+		aux := ll.head
+
+		for aux != nil {
+			if aux.next == nil {
+				aux.next = newNode
+				break
+			}
+			aux = aux.next
+		}
 	}
 
 	ll.tam++
 
-	fmt.Printf("%d was addded at beginning. List: ", value)
+	fmt.Printf("%d added at end (Size %d): ", value, ll.Size())
 	ll.getAll()
+
 }
 
 func (ll *LinkedList) AddOnIndex(value int, index int) {
@@ -71,34 +85,44 @@ func (ll *LinkedList) AddOnIndex(value int, index int) {
 	newNode := initNode(value)
 	aux := ll.head
 
-	for i := 0; aux != nil; i++ {
+	// O(1) case
 
-		// we have to put one element between two elements
-		// so, we iterate til the first, indexed at index - 1
+	if index == 0 {
+		ll.head = newNode
+		newNode.next = aux
+	} else {
 
-		if i == index-1 {
+		// O(n) case
 
-			// take his address
+		for i := 0; aux != nil; i++ {
 
-			left := aux
+			// we have to put one element between two elements
+			// so, we iterate til the first, indexed at index - 1
 
-			// and the third one's
+			if i == index-1 {
 
-			right := aux.next
+				// take his address
 
-			// update pointers
+				left := aux
 
-			left.next = newNode
-			newNode.next = right
+				// and the third one's
 
-			ll.tam++
+				right := aux.next
 
-			break
+				// update pointers
+
+				left.next = newNode
+				newNode.next = right
+
+				break
+			}
+			aux = aux.next
 		}
-		aux = aux.next
 	}
 
-	fmt.Printf("%d was addded at %d. List: ", value, index)
+	ll.tam++
+
+	fmt.Printf("%d was addded at %d (Size %d): ", value, index, ll.Size())
 	ll.getAll()
 }
 
@@ -108,12 +132,25 @@ func (ll *LinkedList) Remove() {
 		return
 	}
 
-	temp := ll.head
-	ll.head = temp.next
-	temp.next = nil
+	// go to the second last element
+	// and make it pointing to null
 
-	fmt.Printf("Removed at beginning. List: ")
+	aux := ll.head
+
+	for i := 0; aux != nil; i++ {
+
+		if i == ll.tam-2 {
+			aux.next = nil
+		}
+
+		aux = aux.next
+	}
+
+	ll.tam--
+
+	fmt.Printf("Removed at end (Size %d): ", ll.Size())
 	ll.getAll()
+
 }
 
 func (ll *LinkedList) RemoveOnIndex(index int) {
@@ -124,21 +161,33 @@ func (ll *LinkedList) RemoveOnIndex(index int) {
 
 	aux := ll.head
 
-	for i := 0; aux != nil; i++ {
-		if i == index-1 {
-			left := aux
-			middle := left.next
-			right := middle.next
+	// O(1) case
 
-			left.next = right
-			middle.next = nil
+	if index == 0 {
+		ll.head = aux.next
+		aux.next = nil
+	} else {
 
-			break
+		// O(n) case
+
+		for i := 0; aux != nil; i++ {
+			if i == index-1 {
+				left := aux
+				middle := left.next
+				right := middle.next
+
+				left.next = right
+				middle.next = nil
+
+				break
+			}
+			aux = aux.next
 		}
-		aux = aux.next
 	}
 
-	fmt.Printf("Removed at %d. List: ", index)
+	ll.tam--
+
+	fmt.Printf("Removed at %d (Size %d): ", index, ll.Size())
 	ll.getAll()
 }
 

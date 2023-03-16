@@ -7,25 +7,19 @@ import (
 func main() {
 
 	var ll helper.LinkedList
-	// var al helper.ArrayList
 
 	ll.Add(4)
-	ll.Add(5)
-	ll.Add(2)
-	ll.RemoveOnIndex(2)
-	ll.RemoveOnIndex(1)
-	ll.Add(9)
-	ll.Add(3)
-	ll.Add(7)
 	ll.Add(12)
-	ll.Add(29)
-	ll.Add(90)
-	ll.Remove()
-	ll.AddOnIndex(19, 4)
-	ll.RemoveOnIndex(3)
+	ll.Add(3)
+	ll.AddOnIndex(13, 0)
+	ll.AddOnIndex(9, 0)
 	ll.Remove()
 	ll.Remove()
-	ll.Remove()
+	ll.RemoveOnIndex(0)
+	ll.RemoveOnIndex(0)
+	ll.RemoveOnIndex(0)
+	ll.Add(56)
+	ll.Add(24)
 	ll.Remove()
 
 }
