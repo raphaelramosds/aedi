@@ -17,7 +17,14 @@ func main() {
 	ll.Add(3)
 	ll.Add(7)
 	ll.Add(12)
+	ll.Add(29)
+	ll.Add(90)
+	ll.Remove()
 	ll.AddOnIndex(19, 4)
 	ll.RemoveOnIndex(3)
+	ll.Remove()
+	ll.Remove()
+	ll.Remove()
+	ll.Remove()
 
 }

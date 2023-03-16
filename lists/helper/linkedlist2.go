@@ -2,6 +2,8 @@ package helper
 
 import "fmt"
 
+// Basic structures
+
 type LinkedList struct {
 	head *No
 	tam  int
@@ -56,11 +58,15 @@ func (ll *LinkedList) Add(value int) {
 
 	ll.tam++
 
-	fmt.Printf("%d was addded. List: ", value)
+	fmt.Printf("%d was addded at beginning. List: ", value)
 	ll.getAll()
 }
 
 func (ll *LinkedList) AddOnIndex(value int, index int) {
+
+	if index >= ll.tam || index < 0 {
+		return
+	}
 
 	newNode := initNode(value)
 	aux := ll.head
@@ -98,27 +104,23 @@ func (ll *LinkedList) AddOnIndex(value int, index int) {
 
 func (ll *LinkedList) Remove() {
 
-	aux := ll.head
-
-	for i := 0; aux != nil; i++ {
-
-		// just make the second to last element
-		// pointing to null
-
-		if i == ll.tam-2 {
-			aux.next = nil
-			ll.tam--
-			break
-		}
-
-		aux = aux.next
+	if ll.tam == 0 {
+		return
 	}
 
-	fmt.Printf("Removed at end. List: ")
+	temp := ll.head
+	ll.head = temp.next
+	temp.next = nil
+
+	fmt.Printf("Removed at beginning. List: ")
 	ll.getAll()
 }
 
 func (ll *LinkedList) RemoveOnIndex(index int) {
+
+	if index >= ll.tam || index < 0 {
+		return
+	}
 
 	aux := ll.head
 
@@ -155,6 +157,10 @@ func (ll *LinkedList) Get(value int) int {
 }
 
 func (ll *LinkedList) Set(value int, index int) int {
+
+	if index >= ll.tam || index < 0 {
+		return -1
+	}
 
 	aux := ll.head
 
