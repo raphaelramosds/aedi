@@ -21,6 +21,10 @@ type IList interface {
 }
 ```
 
-**Note:** `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
+**Note:** One must follow the set of rules below
 
-**Note:** `tam` represents how many elements you've already added into the list
+- On structs, `tam` represents how many elements you've already added into the list. It's totally diferent from `len(list)` that represents how many elements you've asked memory to allocate
+
+- Methods `Add(value int)` and `Remove()` addes/removes element into the end of the list, regardless if it is an ArrayList, LinkedList or DoublyLinkedList
+
+- Methods `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element

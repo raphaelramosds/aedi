@@ -88,8 +88,10 @@ func (ll *LinkedList) AddOnIndex(value int, index int) {
 	// O(1) case
 
 	if index == 0 {
+
 		ll.head = newNode
 		newNode.next = aux
+
 	} else {
 
 		// O(n) case
@@ -164,8 +166,10 @@ func (ll *LinkedList) RemoveOnIndex(index int) {
 	// O(1) case
 
 	if index == 0 {
+
 		ll.head = aux.next
 		aux.next = nil
+
 	} else {
 
 		// O(n) case
