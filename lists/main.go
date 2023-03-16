@@ -7,6 +7,7 @@ import (
 func main() {
 
 	var ll helper.LinkedList
+	// var al helper.ArrayList
 
 	ll.Add(4)
 	ll.Add(5)
