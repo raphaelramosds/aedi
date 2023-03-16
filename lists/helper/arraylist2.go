@@ -1,13 +1,13 @@
 package helper
 
+// Basic structures
+
 type ArrayList struct {
 	values []int
 	tam    int
 }
 
-func (al *ArrayList) Init() {
-	al.values = make([]int, 10)
-}
+// Internal functions
 
 func (al *ArrayList) double() {
 	doubledValues := make([]int, len(al.values)*2)
@@ -15,6 +15,12 @@ func (al *ArrayList) double() {
 		doubledValues[i] = al.values[i]
 	}
 	al.values = doubledValues
+}
+
+// Public functions
+
+func (al *ArrayList) Init() {
+	al.values = make([]int, 10)
 }
 
 func (al *ArrayList) Add(value int) {
