@@ -44,6 +44,11 @@ func (ll *LinkedList) getAll() {
 
 // Public functions
 
+func (ll *LinkedList) Init() {
+	ll.tam = 0
+	ll.head = nil
+}
+
 func (ll *LinkedList) Add(value int) {
 
 	newNode := initNode(value)
@@ -197,6 +202,10 @@ func (ll *LinkedList) RemoveOnIndex(index int) {
 
 func (ll *LinkedList) Get(value int) int {
 
+	if value < 0 || value >= ll.tam {
+		return -1
+	}
+
 	aux := ll.head
 
 	for i := 0; aux != nil; i++ {
@@ -206,7 +215,7 @@ func (ll *LinkedList) Get(value int) int {
 		aux = aux.next
 	}
 
-	return -1
+	return 0
 }
 
 func (ll *LinkedList) Set(value int, index int) int {

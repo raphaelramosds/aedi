@@ -4,6 +4,19 @@ import (
 	"testing"
 )
 
+func TestInit(t *testing.T) {
+	var ll LinkedList
+
+	ll.Init()
+
+	result := ll.tam
+	expected := 0
+
+	if result != expected {
+		t.Errorf("Expected %d but got %d", expected, result)
+	}
+}
+
 func TestAddIntoAnEmptyList(t *testing.T) {
 	var ll LinkedList
 
@@ -17,5 +30,4 @@ func TestAddIntoAnEmptyList(t *testing.T) {
 	if result != expected {
 		t.Errorf("Expected %d but got %d", expected, result)
 	}
-
 }
