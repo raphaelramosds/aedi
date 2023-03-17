@@ -68,23 +68,32 @@ func (dll *DoublyLinkedList) AddOnIndex(value int, index int) {
 	newNode := initNode(value)
 	aux := dll.head
 
-	for i := 0; aux != nil; i++ {
-		if i == index-1 {
+	if index == 0 {
 
-			right := aux.next
+		dll.head = newNode
+		newNode.prev = dll.head
+		newNode.next = aux
+		aux.prev = newNode
 
-			aux.next = newNode
-			newNode.next = right
-			right.prev = newNode
-			newNode.prev = aux
+	} else {
 
-			break
+		for i := 0; aux != nil; i++ {
+			if i == index-1 {
+
+				right := aux.next
+
+				aux.next = newNode
+				newNode.next = right
+				right.prev = newNode
+				newNode.prev = aux
+
+				break
+			}
+			aux = aux.next
 		}
-		aux = aux.next
 	}
 
 	dll.tam++
-
 }
 
 func (dll *DoublyLinkedList) Remove() {
@@ -112,22 +121,39 @@ func (dll *DoublyLinkedList) RemoveOnIndex(index int) {
 
 	aux := dll.head
 
-	for i := 0; aux != nil; i++ {
-		if i == index {
+	if index == dll.tam-1 {
 
-			left := aux.prev
-			right := aux.next
+		last := dll.tail
+		secondLast := last.prev
 
-			left.next = right
-			right.prev = left
+		dll.tail = secondLast
+		last.prev = nil
+		secondLast.next = nil
 
-			break
+	}
+
+	if index == 0 {
+
+		dll.head = aux.next
+		aux.next.prev = dll.head
+
+	} else {
+		for i := 0; aux != nil; i++ {
+			if i == index {
+
+				left := aux.prev
+				right := aux.next
+
+				left.next = right
+				right.prev = left
+
+				break
+			}
+			aux = aux.next
 		}
-		aux = aux.next
 	}
 
 	dll.tam--
-
 }
 
 func (dll *DoublyLinkedList) Get(value int) int {
@@ -162,7 +188,6 @@ func (dll *DoublyLinkedList) Set(value int, index int) {
 		}
 		aux = aux.next
 	}
-
 }
 
 func (dll *DoublyLinkedList) Size() int {

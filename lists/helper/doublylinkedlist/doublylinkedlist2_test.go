@@ -1,6 +1,8 @@
 package helper
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGeneral(t *testing.T) {
 
@@ -12,7 +14,10 @@ func TestGeneral(t *testing.T) {
 		dll.Add(i)
 	}
 
-	dll.AddOnIndex(12, 3)
+	dll.AddOnIndex(12, dll.tam-1)
+	dll.Add(98)
+	dll.Add(50)
+	dll.AddOnIndex(9, 0)
 
 	dll.getAll()
 
