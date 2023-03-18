@@ -45,16 +45,18 @@ func TestRemoveAtEnd(t *testing.T) {
 func TestAddAtBegin(t *testing.T) {
 	var list DoublyLinkedList
 
+	newElement := 12
+
 	list.Init()
 
 	for i := 0; i < 10; i++ {
 		list.Add(i)
 	}
 
-	list.AddOnIndex(12, 0)
+	list.AddOnIndex(newElement, 0)
 
 	result := list.Get(0)
-	expected := 12
+	expected := newElement
 
 	if result != expected {
 		t.Errorf("Expected %d but got %d", expected, result)
