@@ -47,7 +47,7 @@ func (dll *DoublyLinkedList) Add(value int) {
 	if dll.tam == 0 {
 		dll.head = newNode
 		dll.tail = newNode
-		newNode.prev = dll.head
+		newNode.prev = nil
 	} else {
 		aux := dll.tail
 		aux.next = newNode
@@ -71,7 +71,7 @@ func (dll *DoublyLinkedList) AddOnIndex(value int, index int) {
 	if index == 0 {
 
 		dll.head = newNode
-		newNode.prev = dll.head
+		newNode.prev = nil
 		newNode.next = aux
 		aux.prev = newNode
 
@@ -129,13 +129,12 @@ func (dll *DoublyLinkedList) RemoveOnIndex(index int) {
 		dll.tail = secondLast
 		last.prev = nil
 		secondLast.next = nil
-
 	}
 
 	if index == 0 {
 
 		dll.head = aux.next
-		aux.next.prev = dll.head
+		aux.next.prev = nil
 
 	} else {
 		for i := 0; aux != nil; i++ {

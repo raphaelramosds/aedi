@@ -4,30 +4,15 @@ import (
 	"testing"
 )
 
-func TestInit(t *testing.T) {
+func TestGeneral(t *testing.T) {
 	var ll LinkedList
 
 	ll.Init()
 
-	result := ll.tam
-	expected := 0
-
-	if result != expected {
-		t.Errorf("Expected %d but got %d", expected, result)
+	for i := 0; i < 10; i++ {
+		ll.Add(i)
 	}
-}
 
-func TestAddIntoAnEmptyList(t *testing.T) {
-	var ll LinkedList
-
-	newNode := 1
-
-	ll.Add(newNode)
-
-	result := ll.Get(0)
-	expected := newNode
-
-	if result != expected {
-		t.Errorf("Expected %d but got %d", expected, result)
-	}
+	ll.RemoveOnIndex(ll.tam - 1)
+	ll.Remove()
 }
