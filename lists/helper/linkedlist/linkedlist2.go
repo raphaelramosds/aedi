@@ -76,9 +76,6 @@ func (ll *LinkedList) Add(value int) {
 
 	ll.tam++
 
-	fmt.Printf("%d added at end (Size %d): ", value, ll.Size())
-	ll.getAll()
-
 }
 
 func (ll *LinkedList) AddOnIndex(value int, index int) {
@@ -128,9 +125,6 @@ func (ll *LinkedList) AddOnIndex(value int, index int) {
 	}
 
 	ll.tam++
-
-	fmt.Printf("%d was addded at %d (Size %d): ", value, index, ll.Size())
-	ll.getAll()
 }
 
 func (ll *LinkedList) Remove() {
@@ -154,10 +148,6 @@ func (ll *LinkedList) Remove() {
 	}
 
 	ll.tam--
-
-	fmt.Printf("Removed at end (Size %d): ", ll.Size())
-	ll.getAll()
-
 }
 
 func (ll *LinkedList) RemoveOnIndex(index int) {
@@ -195,9 +185,6 @@ func (ll *LinkedList) RemoveOnIndex(index int) {
 	}
 
 	ll.tam--
-
-	fmt.Printf("Removed at %d (Size %d): ", index, ll.Size())
-	ll.getAll()
 }
 
 func (ll *LinkedList) Get(value int) int {
