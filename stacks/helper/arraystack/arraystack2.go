@@ -20,7 +20,10 @@ func (as *ArrayStack) double() {
 func (as *ArrayStack) getAll() {
 	fmt.Printf("[")
 	for i := 0; i < as.tam; i++ {
-		fmt.Printf("%d ", as.values[i])
+		fmt.Printf("%d", as.values[i])
+		if i != as.tam-1 {
+			fmt.Printf(" ")
+		}
 	}
 	fmt.Printf("]")
 }
@@ -49,5 +52,5 @@ func (as *ArrayStack) Pop() {
 }
 
 func (as *ArrayStack) Peek() int {
-	return as.tam - 1
+	return as.values[as.tam-1]
 }

@@ -6,37 +6,11 @@ import (
 
 func TestInspectTop(t *testing.T) {
 
-	var stack ArrayStack
+	var stack LinkedStack
 
 	stack.Init()
 
 	length := 10
-
-	for i := 0; i < length; i++ {
-		stack.Push(i)
-	}
-
-	for i := 0; i < 2; i++ {
-		stack.Pop()
-		length--
-	}
-
-	result := stack.Peek()
-	expected := length - 1
-
-	stack.getAll()
-
-	if result != expected {
-		t.Errorf("Expected %d but got %d", expected, result)
-	}
-}
-
-func TestAddIntoAFullFilledStack(t *testing.T) {
-	var stack ArrayStack
-
-	stack.Init()
-
-	length := 20
 
 	for i := 0; i < length; i++ {
 		stack.Push(i)
@@ -56,7 +30,7 @@ func TestAddIntoAFullFilledStack(t *testing.T) {
 }
 
 func TestInspectIfItsEmpty(t *testing.T) {
-	var stack ArrayStack
+	var stack LinkedStack
 
 	stack.Init()
 
