@@ -32,7 +32,7 @@ type IList interface {
 ## Pros and caveats
 
 | **Operação**                                       | **ArrayList** | **LinkedList** | **DoublyLinkedList** |
-|----------------------------------------------------|---------------|----------------|----------------------|
+|:---------------------------------------------------|---------------|----------------|----------------------|
 | Inserir elemento no fim (ainda há espaço no array) |      O(1)     |      O(n)      |         O(1)         |
 | Inserir elemento no fim (não há espaço no array)   |      O(n)     |      O(n)      |         O(1)         |
 | Inserir elemento no início                         |      O(n)     |      O(1)      |         O(1)         |
