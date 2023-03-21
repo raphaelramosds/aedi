@@ -19,8 +19,8 @@ func (al *ArrayList) double() {
 
 func (al *ArrayList) getAll() {
 	fmt.Printf("[")
-	for _, element := range al.values {
-		fmt.Printf("%d", element)
+	for i := 0; i < al.tam; i++ {
+		fmt.Printf("%d ", al.values[i])
 	}
 	fmt.Printf("]\n")
 }
