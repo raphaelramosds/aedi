@@ -31,31 +31,6 @@ type IList interface {
 
 ## Pros and caveats
 
-<style>
-
-.custom-table tr td ~ td{ text-align:center; }
-
-.custom-table tr:nth-child(1) td:nth-child(2),
-.custom-table tr:nth-child(1) td:nth-child(4),
-.custom-table tr:nth-child(2) td:nth-child(4),
-.custom-table tr:nth-child(3) td:nth-child(4),
-.custom-table tr:nth-child(3) td:nth-child(3),
-.custom-table tr:nth-child(5) td:nth-child(2),
-.custom-table tr:nth-child(6) td:nth-child(2),
-.custom-table tr:nth-child(7) td:nth-child(2),
-.custom-table tr:nth-child(7) td:nth-child(4),
-.custom-table tr:nth-child(7) td:nth-child(3),
-.custom-table tr:nth-child(8) td:nth-child(2),
-.custom-table tr:nth-child(8) td:nth-child(4),
-.custom-table tr:nth-child(9) td:nth-child(4),
-.custom-table tr:nth-child(9) td:nth-child(3)  {
-	background-color: green;
-}
-	
-</style>
-
-<div class="custom-table">
-
 | **Operação**                                       | **ArrayList** | **LinkedList** | **DoublyLinkedList** |
 |----------------------------------------------------|---------------|----------------|----------------------|
 | Inserir elemento no fim (ainda há espaço no array) |      O(1)     |      O(n)      |         O(1)         |
@@ -68,5 +43,3 @@ type IList interface {
 | Remover elemento no fim                            |      O(1)     |      O(n)      |         O(1)         |
 | Remover elemento no início                         |      O(n)     |      O(1)      |         O(1)         |
 | Remover elemento em posição                        |      O(n)     |      O(n)      |         O(n)         |
-
-</div>
