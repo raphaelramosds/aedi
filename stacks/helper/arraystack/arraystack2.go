@@ -49,5 +49,5 @@ func (as *ArrayStack) Pop() {
 }
 
 func (as *ArrayStack) Peek() int {
-	return as.values[as.tam-1]
+	return as.tam - 1
 }

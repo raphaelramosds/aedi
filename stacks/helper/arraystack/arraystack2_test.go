@@ -29,7 +29,7 @@ func TestInspectTop(t *testing.T) {
 	}
 }
 
-func TestAddIntoAFilledStack(t *testing.T) {
+func TestAddIntoAFullFilledStack(t *testing.T) {
 	var stack ArrayStack
 
 	stack.Init()
@@ -50,5 +50,28 @@ func TestAddIntoAFilledStack(t *testing.T) {
 
 	if result != expected {
 		t.Errorf("Expected %d but got %d", expected, result)
+	}
+}
+
+func TestInspectIfItsEmpty(t *testing.T) {
+	var stack ArrayStack
+
+	stack.Init()
+
+	for i := 0; i < 10; i++ {
+		stack.Push(i)
+	}
+
+	for i := 0; i < 10; i++ {
+		stack.Pop()
+	}
+
+	result := stack.IsEmpty()
+	expected := true
+
+	stack.getAll()
+
+	if result != expected {
+		t.Errorf("Expected %t but got %t", expected, result)
 	}
 }
