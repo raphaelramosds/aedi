@@ -29,7 +29,7 @@ type IList interface {
 
 - Methods `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
 
-## Pros and caveats
+### Pros and caveats
 
 | **Operação**                                       | **ArrayList** | **LinkedList** | **DoublyLinkedList** |
 |:---------------------------------------------------|---------------|----------------|----------------------|
