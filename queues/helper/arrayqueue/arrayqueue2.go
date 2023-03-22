@@ -11,6 +11,8 @@ type ArrayQueue struct {
 	tam    int
 }
 
+// Public functions
+
 func (aq *ArrayQueue) Display() {
 
 	fmt.Printf("[")
