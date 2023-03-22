@@ -54,3 +54,7 @@ func (as *ArrayStack) Pop() {
 func (as *ArrayStack) Peek() int {
 	return as.values[as.tam-1]
 }
+
+func (as *ArrayStack) Size() int {
+	return as.tam
+}
