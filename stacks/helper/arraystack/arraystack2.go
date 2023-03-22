@@ -17,7 +17,9 @@ func (as *ArrayStack) double() {
 	as.values = doubledArray
 }
 
-func (as *ArrayStack) getAll() {
+// Public functions
+
+func (as *ArrayStack) Display() {
 	fmt.Printf("[")
 	for i := 0; i < as.tam; i++ {
 		fmt.Printf("%d", as.values[i])
@@ -27,8 +29,6 @@ func (as *ArrayStack) getAll() {
 	}
 	fmt.Printf("]")
 }
-
-// Public functions
 
 func (as *ArrayStack) Init() {
 	as.tam = 0

@@ -24,8 +24,6 @@ func TestInspectTop(t *testing.T) {
 	result := stack.Peek()
 	expected := length - 1
 
-	stack.getAll()
-
 	if result != expected {
 		t.Errorf("Expected %d but got %d", expected, result)
 	}

@@ -16,7 +16,18 @@ type LinkedStack struct {
 
 // Internal functions
 
-func (ls *LinkedStack) getAll() {
+func initNode(value int) *No {
+
+	newNode := new(No)
+	newNode.value = value
+	newNode.next = nil
+
+	return newNode
+}
+
+// Public functions
+
+func (ls *LinkedStack) Display() {
 	aux := ls.head
 
 	fmt.Printf("[")
@@ -31,17 +42,6 @@ func (ls *LinkedStack) getAll() {
 
 	fmt.Printf("]\n")
 }
-
-func initNode(value int) *No {
-
-	newNode := new(No)
-	newNode.value = value
-	newNode.next = nil
-
-	return newNode
-}
-
-// Public functions
 
 func (ls *LinkedStack) Init() {
 	ls.tam = 0
