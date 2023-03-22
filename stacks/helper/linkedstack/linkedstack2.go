@@ -100,3 +100,7 @@ func (ls *LinkedStack) Peek() int {
 
 	return -1
 }
+
+func (ls *LinkedStack) Size() int {
+	return ls.tam
+}
