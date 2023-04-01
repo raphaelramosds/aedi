@@ -1,90 +1,91 @@
 package helper
 
-import "fmt"
+import "errors"
 
 // Basic structures
 
 type ArrayList struct {
 	values []int
-	tam    int
+	size   int
 }
 
 // Internal functions
 
 func (al *ArrayList) double() {
 	doubledValues := make([]int, len(al.values)*2)
-	copy(al.values, doubledValues)
-	al.values = doubledValues
-}
-
-func (al *ArrayList) getAll() {
-	fmt.Printf("[")
-	for i := 0; i < al.tam; i++ {
-		fmt.Printf("%d ", al.values[i])
+	for i := 0; i < len(al.values); i++ {
+		doubledValues[i] = al.values[i]
 	}
-	fmt.Printf("]\n")
+	al.values = doubledValues
 }
 
 // Public functions
 
-func (al *ArrayList) Init() {
-	al.tam = 0
-	al.values = make([]int, 10)
+func (al *ArrayList) Init(size int) error {
+	if size > 0 {
+		al.values = make([]int, size)
+		return nil
+	} else {
+		return errors.New("can't init arraylist with size <= 0")
+	}
 }
 
 func (al *ArrayList) Add(value int) {
 
-	if al.tam >= len(al.values) {
+	if al.size >= len(al.values) {
 		al.double()
 	}
 
-	al.values[al.tam] = value
-	al.tam++
+	al.values[al.size] = value
+	al.size++
 }
 
-func (al *ArrayList) AddOnIndex(value int, index int) {
+func (al *ArrayList) AddOnIndex(value int, index int) error {
 
-	if al.tam >= len(al.values) {
+	if al.size >= len(al.values) {
 		al.double()
 	}
 
-	// Shift all elements to the right
-	// starting with the last element
+	// Shift all elements to the right starting with the last element
 
-	for i := al.tam; i > index; i-- {
+	for i := al.size; i > index; i-- {
 		al.values[i] = al.values[i-1]
 	}
 
 	al.values[index] = value
-	al.tam++
+	al.size++
+
+	return nil
 }
 
 func (l *ArrayList) Remove() {
-	if l.tam > 0 {
-		l.tam--
+	if l.size > 0 {
+		l.size--
 	}
 }
 
-func (al *ArrayList) RemoveOnIndex(index int) {
+func (al *ArrayList) RemoveOnIndex(index int) error {
 
-	// Put right side values on the place
-	// of the excluded element
+	// Put right side values on the place of the excluded element
 
-	for i := index; i < al.tam-1; i++ {
+	for i := index; i < al.size-1; i++ {
 		al.values[i] = al.values[i+1]
 	}
 
-	al.tam--
+	al.size--
+
+	return nil
 }
 
-func (al *ArrayList) Get(index int) int {
-	return al.values[index]
+func (al *ArrayList) Get(index int) (int, error) {
+	return al.values[index], nil
 }
 
-func (al *ArrayList) Set(value, index int) {
+func (al *ArrayList) Set(value, index int) error {
 	al.values[index] = value
+	return nil
 }
 
 func (al *ArrayList) Size() int {
-	return al.tam
+	return al.size
 }
