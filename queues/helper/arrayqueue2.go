@@ -78,7 +78,7 @@ func (aq *ArrayQueue) Size() int {
 	return aq.tam
 }
 
-func (aq *ArrayQueue) IsEmpty() bool {
+func (aq *ArrayQueue) Empty() bool {
 	return aq.front == -1 && aq.rear == -1
 }
 

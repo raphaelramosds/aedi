@@ -43,7 +43,7 @@ type IList interface {
 
 ## Stacks
 
-Lists implementations must follow this interface
+Stacks implementations must follow this interface
 
 ```go
 type IStack interface {
