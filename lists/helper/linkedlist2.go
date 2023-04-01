@@ -14,7 +14,7 @@ type Node1P struct {
 	next  *Node1P
 }
 
-// Public functions
+// Interface functions
 
 func (ll *LinkedList) Add(value int) {
 

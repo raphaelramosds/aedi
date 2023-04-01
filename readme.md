@@ -7,23 +7,19 @@ All implementations are built in Golang, a modern programming language
 Lists implementations must follow this interface
 
 ```go
-package list
-
 type IList interface {
-	Init(length int)
 	Add(value int)
-	AddOnIndex(value int, index int)
-	Remove()
-	RemoveOnIndex(index int)
-	Get(value int)
-	Set(value int, index int)
-	Size()
+	AddOnIndex(value int, index int) error
+	RemoveOnIndex(index int) error
+	Get(index int) (int, error)
+	Set(value int, index int) error
+	Size() int
 }
 ```
 
 **Note:** One must follow the set of rules below
 
-- On structs, `tam` represents how many elements you've already added into the list. It's totally diferent from `len(list)` that represents how many elements you've asked memory to allocate
+- On structs, `size` represents how many elements you've already added into the list. It's totally diferent from `len(list)` that represents how many elements you've asked memory to allocate
 
 - Methods `Add(value int)` and `Remove()` addes/removes element into the end of the list, regardless if it is an ArrayList, LinkedList or DoublyLinkedList
 
@@ -43,3 +39,18 @@ type IList interface {
 | Remover elemento no fim                            |      O(1)     |      O(n)      |         O(1)         |
 | Remover elemento no início                         |      O(n)     |      O(1)      |         O(1)         |
 | Remover elemento em posição                        |      O(n)     |      O(n)      |         O(n)         |
+
+
+## Stacks
+
+Lists implementations must follow this interface
+
+```go
+type IStack interface {
+	Push(value int)
+	Pop() (int, error)
+	Peek() (int, error)
+	Empty() bool
+	Size() int
+}
+```

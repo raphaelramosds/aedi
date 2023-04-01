@@ -2,24 +2,12 @@ package helper
 
 import "errors"
 
-// Basic structures
-
 type ArrayList struct {
 	values []int
 	size   int
 }
 
 // Internal functions
-
-func (al *ArrayList) double() {
-	doubledValues := make([]int, len(al.values)*2)
-	for i := 0; i < len(al.values); i++ {
-		doubledValues[i] = al.values[i]
-	}
-	al.values = doubledValues
-}
-
-// Public functions
 
 func (al *ArrayList) Init(size int) error {
 	if size > 0 {
@@ -30,62 +18,85 @@ func (al *ArrayList) Init(size int) error {
 	}
 }
 
-func (al *ArrayList) Add(value int) {
+func (al *ArrayList) double() {
+	doubledValues := make([]int, len(al.values)*2)
+	for i := 0; i < len(al.values); i++ {
+		doubledValues[i] = al.values[i]
+	}
+	al.values = doubledValues
+}
 
-	if al.size >= len(al.values) {
+// Interface functions
+
+func (al *ArrayList) Add(value int) {
+	if al.size == len(al.values) {
 		al.double()
 	}
-
 	al.values[al.size] = value
 	al.size++
 }
 
 func (al *ArrayList) AddOnIndex(value int, index int) error {
-
-	if al.size >= len(al.values) {
-		al.double()
-	}
-
-	// Shift all elements to the right starting with the last element
-
-	for i := al.size; i > index; i-- {
-		al.values[i] = al.values[i-1]
-	}
-
-	al.values[index] = value
-	al.size++
-
-	return nil
-}
-
-func (l *ArrayList) Remove() {
-	if l.size > 0 {
-		l.size--
+	if index >= 0 && index <= al.size {
+		if al.size == len(al.values) {
+			al.double()
+		}
+		for i := al.size; i > index; i-- {
+			al.values[i] = al.values[i-1]
+		}
+		al.values[index] = value
+		al.size++
+		return nil
+	} else {
+		if index < 0 {
+			return errors.New("can't add in index < 0")
+		} else {
+			return errors.New("can't add in index > arraylist.size")
+		}
 	}
 }
 
 func (al *ArrayList) RemoveOnIndex(index int) error {
-
-	// Put right side values on the place of the excluded element
-
-	for i := index; i < al.size-1; i++ {
-		al.values[i] = al.values[i+1]
+	if index >= 0 && index < al.size {
+		for i := index; i < al.size-1; i++ {
+			al.values[i] = al.values[i+1]
+		}
+		al.size--
+		return nil
+	} else {
+		if index < 0 {
+			return errors.New("can't remove from index < 0")
+		} else {
+			return errors.New("can't remove from index >= arraylist.size")
+		}
 	}
-
-	al.size--
-
-	return nil
 }
 
 func (al *ArrayList) Get(index int) (int, error) {
-	return al.values[index], nil
+	if index >= 0 && index < al.size {
+		return al.values[index], nil
+	} else {
+		if index < 0 {
+			return index, errors.New("can't get value from index < 0")
+		} else {
+			return index, errors.New("can't get value from index >= arraylist.size")
+		}
+	}
 }
 
-func (al *ArrayList) Set(value, index int) error {
-	al.values[index] = value
-	return nil
+func (arraylist *ArrayList) Set(value, index int) error {
+	if index >= 0 && index < arraylist.size {
+		arraylist.values[index] = value
+		return nil
+	} else {
+		if index < 0 {
+			return errors.New("can't set value on arraylist on index < 0")
+		} else {
+			return errors.New("can't set value on arraylist on index >= arraylist.size")
+		}
+	}
 }
 
-func (al *ArrayList) Size() int {
-	return al.size
+func (arraylist *ArrayList) Size() int {
+	return arraylist.size
 }

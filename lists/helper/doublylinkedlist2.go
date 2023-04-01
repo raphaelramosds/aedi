@@ -16,7 +16,7 @@ type DoublyLinkedList struct {
 	size int
 }
 
-// Public functions
+// Interface functions
 
 func (dll *DoublyLinkedList) Add(value int) {
 	newNode := Node2P{value, nil, nil}
