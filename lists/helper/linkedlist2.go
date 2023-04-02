@@ -73,7 +73,7 @@ func (ll *LinkedList) Remove() {}
 func (ll *LinkedList) RemoveOnIndex(index int) error {
 	if ll.size == 0 {
 		return errors.New("list is empty")
-	} else if index >= 0 && index <= ll.size {
+	} else if index >= 0 && index < ll.size {
 		curr := ll.head
 		if index == 0 {
 			ll.head = curr.next
@@ -114,7 +114,7 @@ func (ll *LinkedList) Get(index int) (int, error) {
 }
 
 func (ll *LinkedList) Set(value int, index int) error {
-	if index >= 0 && index <= ll.size {
+	if index >= 0 && index < ll.size {
 		curr := ll.head
 		for i := 0; i < index; i++ {
 			curr = curr.next

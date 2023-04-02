@@ -76,7 +76,7 @@ func (dll *DoublyLinkedList) Remove() {}
 func (dll *DoublyLinkedList) RemoveOnIndex(index int) error {
 	if dll.size == 0 {
 		return errors.New("empty list")
-	} else if index >= 0 && index <= dll.size {
+	} else if index >= 0 && index < dll.size {
 		curr := dll.head
 		if index == 0 {
 			dll.head = curr.next
@@ -111,7 +111,7 @@ func (dll *DoublyLinkedList) RemoveOnIndex(index int) error {
 }
 
 func (dll *DoublyLinkedList) Get(index int) (int, error) {
-	if index >= 0 && index <= dll.size {
+	if index >= 0 && index < dll.size {
 		curr := dll.head
 		for i := 0; i < index; i++ {
 			curr = curr.next
@@ -129,7 +129,7 @@ func (dll *DoublyLinkedList) Get(index int) (int, error) {
 }
 
 func (dll *DoublyLinkedList) Set(value int, index int) error {
-	if index >= 0 && index <= dll.size {
+	if index >= 0 && index < dll.size {
 		curr := dll.head
 		for i := 0; i < index; i++ {
 			curr = curr.next
