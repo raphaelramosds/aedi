@@ -1,6 +1,26 @@
-# Data Structures and Algorithms (DCA0208)
+# Data Structures
 
 All implementations are built in Golang, a modern programming language
+
+**Tips:** Below some tips for those implementations
+
+- Index verification is presented as follow. Note that is totally safe if user entries with `index = list.size`, that's because the amount of elements present on the list is indeed a valid index.
+
+```go
+if (index >= 0 && index <= list.size) {
+	// some code
+}
+```
+
+- It's easier to iterate over linked lists using for loops. For exemple, if you want to reach the n-th element, you only want to iterate until de n - 1 index. That's because your iterate variable `curr` always assumes the next address. So, once the (n-1)-th element is reached, `curr` automatically take the address of the n-th element
+
+```go 
+curr := list.head
+
+for i := 0; i < n; i++ {
+	curr = curr.next
+}
+```
 
 ## Lists
 
@@ -24,6 +44,7 @@ type IList interface {
 - Methods `Add(value int)` and `Remove()` addes/removes element into the end of the list, regardless if it is an ArrayList, LinkedList or DoublyLinkedList
 
 - Methods `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
+
 
 ### Pros and caveats
 
