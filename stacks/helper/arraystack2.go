@@ -43,9 +43,9 @@ func (as *ArrayStack) Pop() (int, error) {
 	if as.size == 0 {
 		return -1, errors.New("stack is empty")
 	} else {
-		removedElement := as.values[as.size-1]
+		newPeek := as.values[as.size-1]
 		as.size--
-		return removedElement, nil
+		return newPeek, nil
 	}
 }
 

@@ -38,10 +38,9 @@ func (ls *LinkedStack) Pop() (int, error) {
 		for i := 0; i < ls.size-1; i++ {
 			curr = curr.next
 		}
-		removedNode, _ := ls.Peek()
 		curr.next = nil
 		ls.size--
-		return removedNode, nil
+		return curr.value, nil
 	}
 }
 
