@@ -1,25 +1,28 @@
-# Data Structures
+# Golang Enviroment
 
-All implementations are built in Golang, a modern programming language. How to set up a golang enviroment? Follows these steps
+All implementations are built in Golang, a modern programming language. 
 
-1 - Vou até o diretório onde quero iniciar o projeto
-2 - Nesse diretório digito um domínio qualquer para o módulo
+How to set up a golang enviroment? Follows these steps
+
+1 - Go to the directory you want to start your project
+
+2 - Create a module and name its domain and subdomain
 
 ```bash
 go mod init exemplo.com/subdominio
 ```
 
-3 - O go vai vai criar um arquivo go.mod. Acompanhado a ele, eu crio a estrutura de arquivos
+3 - A go.mod file will be created. Your external functions should be declared on helper folder, as the file structure below suggests
 
 ```bash
 helper/arraylist2.go
 helper/linkedlist2.go
-helper/doublylinkedlist2.go
+...
 main.go
 go.mod
 ```
 
-4 - Daí vamos supor que você queira usar a função Init() e o struct ArrayList definidos na arraylist2.go. Primeiro vc vai no main.go e chama eles pelo pacote helper assim
+Then, say, you want to use Init() function and the struct ArrayList already defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
 
 ```go
 package main
@@ -33,13 +36,15 @@ func main() {
 ```
 
 
-5 - Aí na implementação do arquivo arraylist2.go é só colocar na primeira linha
+5 - Then, on arraylist2.go, you must invoke, on the first line, the helper package
 
 ```go
 package helper
 ```
 
-que seus métodos e structs vão ficar visíveis em todo arquivo main.go
+So, all methods, variables and structs declared on arraylist2.go will be visible for main.go
+
+# Data Structures
 
 ## Tips
 
