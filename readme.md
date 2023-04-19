@@ -1,8 +1,49 @@
 # Data Structures
 
-All implementations are built in Golang, a modern programming language
+All implementations are built in Golang, a modern programming language. How to set up a golang enviroment? Follows these steps
 
-**Tips:** Below some tips for those implementations
+1 - Vou até o diretório onde quero iniciar o projeto
+2 - Nesse diretório digito um domínio qualquer para o módulo
+
+```bash
+go mod init exemplo.com/subdominio
+```
+
+3 - O go vai vai criar um arquivo go.mod. Acompanhado a ele, eu crio a estrutura de arquivos
+
+```bash
+helper/arraylist2.go
+helper/linkedlist2.go
+helper/doublylinkedlist2.go
+main.go
+go.mod
+```
+
+4 - Daí vamos supor que você queira usar a função Init() e o struct ArrayList definidos na arraylist2.go. Primeiro vc vai no main.go e chama eles pelo pacote helper assim
+
+```go
+package main
+
+import "exemplo.com/subdominio/helper"
+
+func main() {
+	var arraylist helper.ArrayList
+	arraylist.Init(10)
+}
+```
+
+
+5 - Aí na implementação do arquivo arraylist2.go é só colocar na primeira linha
+
+```go
+package helper
+```
+
+que seus métodos e structs vão ficar visíveis em todo arquivo main.go
+
+## Tips
+
+Below some tips for those implementations
 
 - The parameter `size` on Abstract Data Types means how many elements you've inserted into the data structure! It differs from `len()` that represents how many spaces of memory you've allocated for storing your elements
 
@@ -78,6 +119,20 @@ Stacks implementations must follow this interface
 type IStack interface {
 	Push(value int)
 	Pop() (int, error)
+	Peek() (int, error)
+	Empty() bool
+	Size() int
+}
+```
+
+## Queues
+
+Queues implementations must follow this interface
+
+```go
+type IQueue interface {
+	Enqueue(value int)
+	Dequeue() (int, error)
 	Peek() (int, error)
 	Empty() bool
 	Size() int
