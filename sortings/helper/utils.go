@@ -64,8 +64,7 @@ func BubbleSort(v []int) {
 * Insertion Sort
 * Best case: Ω(n)
 * Worst case: O(n²)
-* Goal: insert the i-th element at its
-* correct position at the "left hand"
+* Goal: insert the i-th element at its correct position on the "left hand"
  */
 
 func InsertionSortIPV4(v []int) {
