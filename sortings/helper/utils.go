@@ -1,45 +1,61 @@
 package helper
 
-import (
-	"fmt"
-	"math/rand"
-)
+/*
+* Selection Sort
+* Best case: Ω(n²)
+* Worst case: O(n²)
+* Goal: move the lowest element to the left
+ */
 
-// Auxiliar functions
-
-func Display(v []int) {
-	fmt.Printf("[")
-	for _, element := range v {
-		fmt.Printf("%d ", element)
+func SelectionSortOP(v *[]int) { // Out of place
+	n := len(*v)
+	max_int := 100
+	sorted_list := make([]int, n)
+	min_idx := 0
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			if (*v)[min_idx] >= (*v)[j] {
+				min_idx = j
+			}
+		}
+		sorted_list[i] = (*v)[min_idx]
+		(*v)[min_idx] = max_int
 	}
-	fmt.Printf("]\n")
+	*v = sorted_list
 }
 
-func Init(length int) []int {
-	list := make([]int, length)
-	for i := 0; i < length; i++ {
-		list[i] = rand.Intn(100)
+func SelectionSortIP(v []int) { // In place
+	n := len(v)
+	for i := 0; i < n-1; i++ {
+		lowest_idx := i
+		for j := i; j < n; j++ {
+			if v[lowest_idx] >= v[j] {
+				lowest_idx = j
+			}
+		}
+		v[lowest_idx], v[i] = v[i], v[lowest_idx]
 	}
-	return list
 }
 
 /*
-* Selection Sort
-* Best case: O(n)
-* Worst case: O(n^2)
+* Bubble Sort
+* Best case: Ω(n)
+* Worst case: O(n²)
+* Goal: move the highest element to the right
  */
 
-func SelectionSort(v []int) {
+func BubbleSort(v []int) {
 	n := len(v)
-	min_index := 0
-	temp := 0
+	swap := false
 	for i := 0; i < n-1; i++ {
-		for j := i; j < n; j++ {
-			if v[temp] >= v[j] {
-				temp = j
+		for j := 0; j < n-i-1; j++ {
+			if v[j] >= v[j+1] {
+				v[j], v[j+1] = v[j+1], v[j]
+				swap = true
 			}
 		}
-		v[min_index], v[temp] = v[temp], v[min_index]
-		min_index++
+		if !swap {
+			return
+		}
 	}
 }
