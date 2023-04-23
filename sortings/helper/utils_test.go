@@ -7,7 +7,7 @@ import (
 
 // # of elements
 
-var size int = 100
+var size int = 90000
 
 /*
 * @brief Inits an array of length n
@@ -42,7 +42,7 @@ func TestSelectionSortIP(t *testing.T) {
 	SelectionSortIP(s[:])
 	result := is_asc_sorted(s[:])
 	if !result {
-		t.Errorf("SelectionSortIP did not sort the list")
+		t.Errorf("SelectionSortIP did not sort properly")
 	}
 }
 
@@ -51,7 +51,7 @@ func TestSelectionSortOP(t *testing.T) {
 	SelectionSortOP(&s)
 	result := is_asc_sorted(s[:])
 	if !result {
-		t.Errorf("SelectionSortOP did not sort the list")
+		t.Errorf("SelectionSortOP did not sort properly")
 	}
 }
 
@@ -60,6 +60,24 @@ func TestBubbleSort(t *testing.T) {
 	BubbleSort(s[:])
 	result := is_asc_sorted(s[:])
 	if !result {
-		t.Errorf("BubbleSort did not sort the list")
+		t.Errorf("BubbleSort did not sort properly")
+	}
+}
+
+func TestInsertionSortIPV4(t *testing.T) {
+	s := create_list(size)
+	InsertionSortIPV4(s[:])
+	result := is_asc_sorted(s[:])
+	if !result {
+		t.Errorf("InsertionSortIPV4 did not sort properly")
+	}
+}
+
+func TestInsertionSortIPV5(t *testing.T) {
+	s := create_list(size)
+	InsertionSortIPV5(s[:])
+	result := is_asc_sorted(s[:])
+	if !result {
+		t.Errorf("InsertionSortIPV5 did not sort properly")
 	}
 }
