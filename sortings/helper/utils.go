@@ -93,3 +93,74 @@ func InsertionSortIPV5(v []int) {
 		v[j] = value
 	}
 }
+
+/*
+* Merge Sort
+* Best case: Ω(nlog(n))
+* Worst case: O(nlog(n))
+* Goal: divide and conquer
+ */
+
+func Merge(v, v1, v2 []int) {
+	i1 := 0
+	i2 := 0
+	k := 0
+	l1 := len(v1)
+	l2 := len(v2)
+
+	for i1 < l1 && i2 < l2 {
+		if v1[i1] > v2[i2] {
+			v[k] = v2[i2]
+			i2++
+		} else {
+			v[k] = v1[i1]
+			i1++
+		}
+		k++
+	}
+
+	for i1 < l1 {
+		v[k] = v1[i1]
+		i1++
+		k++
+	}
+
+	for i2 < l2 {
+		v[k] = v2[i2]
+		i2++
+		k++
+	}
+}
+
+func MergeSort(v []int) {
+	if len(v) > 1 {
+
+		// Find the mid index
+
+		mid := len(v) / 2
+
+		// Split the left and right halves of the array
+
+		left_half := make([]int, mid)
+		right_half := make([]int, len(v)-mid)
+
+		// Populate halves
+
+		for lh := 0; lh < mid; lh++ {
+			left_half[lh] = v[lh]
+		}
+
+		for rh := mid; rh < len(v); rh++ {
+			right_half[rh-mid] = v[rh]
+		}
+
+		// Recursion calls
+
+		MergeSort(left_half[:])
+		MergeSort(right_half[:])
+
+		// Merge two halves
+
+		Merge(v[:], left_half[:], right_half[:])
+	}
+}

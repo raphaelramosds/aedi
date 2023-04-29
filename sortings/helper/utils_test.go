@@ -7,7 +7,7 @@ import (
 
 // # of elements
 
-var size int = 90000
+var size int = 100000
 
 /*
 * @brief Inits an array of length n
@@ -79,5 +79,35 @@ func TestInsertionSortIPV5(t *testing.T) {
 	result := is_asc_sorted(s[:])
 	if !result {
 		t.Errorf("InsertionSortIPV5 did not sort properly")
+	}
+}
+
+func TestMergeAlgorithm(t *testing.T) {
+	n := 30
+	l1 := 15
+	l2 := n - l1
+
+	v := create_list(n)
+	v1 := create_list(l1)
+	v2 := create_list(l2)
+	for i := 0; i < len(v1); i++ {
+		v1[i] = i
+	}
+	for i := 0; i < len(v2); i++ {
+		v2[i] = i + len(v2)
+	}
+	Merge(v, v1, v2)
+	result := is_asc_sorted(v[:])
+	if !result {
+		t.Errorf("Merge did not work properly")
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	s := create_list(size)
+	MergeSort(s[:])
+	result := is_asc_sorted(s[:])
+	if !result {
+		t.Errorf("MergeSort did not sort properly")
 	}
 }
