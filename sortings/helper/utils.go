@@ -1,5 +1,10 @@
 package helper
 
+import (
+	"math/rand"
+	"time"
+)
+
 /*
 * Selection Sort
 * Best case: Ω(n²)
@@ -98,7 +103,8 @@ func InsertionSortIPV5(v []int) {
 * Merge Sort
 * Best case: Ω(nlog(n))
 * Worst case: O(nlog(n))
-* Goal: divide and conquer
+* Goal: split array into halves with recursion calls. Then,
+* given two halves that are sorted, merge them into a sorted array
  */
 
 func Merge(v, v1, v2 []int) {
@@ -163,4 +169,58 @@ func MergeSort(v []int) {
 
 		Merge(v[:], left_half[:], right_half[:])
 	}
+}
+
+/*
+* Quick Sort / Partition Sort
+* Best case: Ω(nlog(n))
+* Worst case: O(n²) if pivot isn't randomly taken, otherwise, O(nlog(n))
+* Goal: on each iteration, choose a pivot and put elements great than it
+* at its right and lower ones at its left
+ */
+
+func QuickSort(v []int, start int, end int) {
+	if start < end {
+		pivot := PartitionV2(v[:], start, end)
+		QuickSort(v[:], start, pivot-1)
+		QuickSort(v[:], pivot+1, end)
+	}
+}
+
+// Without randomization
+
+func PartitionV1(v []int, start int, end int) int {
+	p_index := start
+	pivot := v[end]
+	for i := start; i < end; i++ {
+		if pivot > v[i] {
+			v[i], v[p_index] = v[p_index], v[i]
+			p_index++
+		}
+	}
+	v[p_index], v[end] = v[end], v[p_index]
+	return p_index
+}
+
+// With randomization
+
+func PartitionV2(v []int, start int, end int) int {
+	p_index := start
+
+	// TODO too slow
+
+	rand.Seed(time.Now().UnixNano())
+	rand_p := rand.Intn(end-start+1) + start
+	v[rand_p], v[end] = v[end], v[rand_p]
+
+	pivot := v[end]
+
+	for i := start; i < end; i++ {
+		if pivot > v[i] {
+			v[i], v[p_index] = v[p_index], v[i]
+			p_index++
+		}
+	}
+	v[p_index], v[end] = v[end], v[p_index]
+	return p_index
 }
