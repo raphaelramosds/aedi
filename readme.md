@@ -1,52 +1,8 @@
-# Golang Enviroment
+# Data Structures and Algorithms
 
-All implementations are built in Golang, a modern programming language. 
+Notes about data structures and Algorithms
 
-How to set up a golang enviroment? Follows these steps
-
-1. Go to the directory you want to start your project
-
-2. Create a module and name its domain and subdomain
-
-```bash
-go mod init exemplo.com/subdominio
-```
-
-3. A go.mod file will be created. Your external functions should be declared on helper folder, as the file structure below suggests
-
-```bash
-helper/arraylist2.go
-helper/linkedlist2.go
-...
-main.go
-go.mod
-```
-
-Then, say, you want to use Init() method of ArrayList and the struct ArrayList is defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
-
-```go
-package main
-import "exemplo.com/subdominio/helper"
-
-func main() {
-	var arraylist helper.ArrayList
-	arraylist.Init(10)
-}
-```
-
-5. Then, on arraylist2.go, you must invoke, on the first line, the helper package
-
-```go
-package helper
-```
-
-So, all methods, variables and structs declared on arraylist2.go will be visible for main.go
-
-# Data Structures
-
-## Tips
-
-Below some tips for those implementations
+## ADT Lists
 
 - The parameter `size` on Abstract Data Types means how many elements you've inserted into the data structure! It differs from `len()` that represents how many spaces of memory you've allocated for storing your elements
 
@@ -54,7 +10,7 @@ Below some tips for those implementations
 
 ```go
 if (index >= 0 && index < list.size) {
-	// get, remove, set
+	// Get, Remove, Set
 }
 ```
 
@@ -62,7 +18,7 @@ But, add into `index = list.size` is a safe operation! It means that you want to
 
 ```go
 if (index >= 0 && index <= list.size) {
-	// add
+	// Add
 }
 ```
 
@@ -75,10 +31,6 @@ for i := 0; i < n; i++ {
 	curr = curr.next
 }
 ```
-
-## Lists
-
-**Note:** One must follow the set of rules below
 
 - Methods `Add(value int)` and `Remove()` addes/removes element into the end of the list, regardless if it is an ArrayList, LinkedList or DoublyLinkedList
 
