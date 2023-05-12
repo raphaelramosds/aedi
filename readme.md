@@ -22,7 +22,7 @@ main.go
 go.mod
 ```
 
-Then, say, you want to use Init() method of ArrayList and the struct ArrayList is already defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
+Then, say, you want to use Init() method of ArrayList and the struct ArrayList is defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
 
 ```go
 package main
@@ -33,7 +33,6 @@ func main() {
 	arraylist.Init(10)
 }
 ```
-
 
 5. Then, on arraylist2.go, you must invoke, on the first line, the helper package
 
