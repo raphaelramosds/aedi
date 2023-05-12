@@ -50,11 +50,7 @@ func (as *ArrayStack) Pop() (int, error) {
 }
 
 func (as *ArrayStack) Peek() (int, error) {
-	if as.size == 0 {
-		return -1, errors.New("stack is empty")
-	} else {
-		return as.values[as.size-1], nil
-	}
+	// TODO peek is the at the beginning
 }
 
 func (as *ArrayStack) Empty() bool {

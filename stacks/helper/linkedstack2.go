@@ -45,15 +45,7 @@ func (ls *LinkedStack) Pop() (int, error) {
 }
 
 func (ls *LinkedStack) Peek() (int, error) {
-	if ls.size == 0 {
-		return -1, errors.New("stack is empty")
-	} else {
-		curr := ls.head
-		for curr.next != nil {
-			curr = curr.next
-		}
-		return curr.value, nil
-	}
+	// TODO peek is the at the beginning
 }
 
 func (ls *LinkedStack) Empty() bool {

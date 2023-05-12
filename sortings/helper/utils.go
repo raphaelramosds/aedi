@@ -33,7 +33,7 @@ func SelectionSortIP(v []int) { // In place
 	n := len(v)
 	for i := 0; i < n-1; i++ {
 		lowest_idx := i
-		for j := i; j < n; j++ {
+		for j := i + 1; j < n; j++ {
 			if v[lowest_idx] > v[j] {
 				lowest_idx = j
 			}

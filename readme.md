@@ -4,15 +4,15 @@ All implementations are built in Golang, a modern programming language.
 
 How to set up a golang enviroment? Follows these steps
 
-1 - Go to the directory you want to start your project
+1. Go to the directory you want to start your project
 
-2 - Create a module and name its domain and subdomain
+2. Create a module and name its domain and subdomain
 
 ```bash
 go mod init exemplo.com/subdominio
 ```
 
-3 - A go.mod file will be created. Your external functions should be declared on helper folder, as the file structure below suggests
+3. A go.mod file will be created. Your external functions should be declared on helper folder, as the file structure below suggests
 
 ```bash
 helper/arraylist2.go
@@ -22,11 +22,10 @@ main.go
 go.mod
 ```
 
-Then, say, you want to use Init() function and the struct ArrayList already defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
+Then, say, you want to use Init() method of ArrayList and the struct ArrayList is already defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
 
 ```go
 package main
-
 import "exemplo.com/subdominio/helper"
 
 func main() {
@@ -36,7 +35,7 @@ func main() {
 ```
 
 
-5 - Then, on arraylist2.go, you must invoke, on the first line, the helper package
+5. Then, on arraylist2.go, you must invoke, on the first line, the helper package
 
 ```go
 package helper
@@ -80,27 +79,13 @@ for i := 0; i < n; i++ {
 
 ## Lists
 
-Lists implementations must follow this interface
-
-```go
-type IList interface {
-	Add(value int)
-	AddOnIndex(value int, index int) error
-	RemoveOnIndex(index int) error
-	Get(index int) (int, error)
-	Set(value int, index int) error
-	Size() int
-}
-```
-
 **Note:** One must follow the set of rules below
 
 - Methods `Add(value int)` and `Remove()` addes/removes element into the end of the list, regardless if it is an ArrayList, LinkedList or DoublyLinkedList
 
 - Methods `AddOnIndex(value int, index int)` should shift elements to right in order to fit the new element
 
-
-### Pros and caveats
+### Time complexity
 
 | **Operation**                                      | **ArrayList** | **LinkedList** | **DoublyLinkedList** |
 |:---------------------------------------------------|---------------|----------------|----------------------|
@@ -115,31 +100,3 @@ type IList interface {
 | Remove from the beginning                          |      O(n)     |      O(1)      |         O(1)         |
 | Remove from index                                  |      O(n)     |      O(n)      |         O(n)         |
 
-
-## Stacks
-
-Stacks implementations must follow this interface
-
-```go
-type IStack interface {
-	Push(value int)
-	Pop() (int, error)
-	Peek() (int, error)
-	Empty() bool
-	Size() int
-}
-```
-
-## Queues
-
-Queues implementations must follow this interface
-
-```go
-type IQueue interface {
-	Enqueue(value int)
-	Dequeue() (int, error)
-	Peek() (int, error)
-	Empty() bool
-	Size() int
-}
-```
