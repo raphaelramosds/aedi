@@ -7,7 +7,7 @@ import (
 
 // # of elements
 
-var size int = 970000
+var size int = 1000000
 
 /*
 * @brief Inits an array of length n
@@ -17,6 +17,7 @@ var size int = 970000
 func create_list(n int) []int {
 	list := make([]int, n)
 	for i := 0; i < n; i++ {
+		// Generate a number between 0 and 100
 		list[i] = rand.Intn(100)
 	}
 	return list
@@ -122,8 +123,8 @@ func TestQuickSort(t *testing.T) {
 }
 
 func TestCountingSort(t *testing.T) {
-	s := create_list(size)
-	CountingSort(s)
+	v := create_list(size)
+	s := CountingSort(v)
 	result := is_asc_sorted(s)
 	if !result {
 		t.Errorf("CountingSort did not sort properly")

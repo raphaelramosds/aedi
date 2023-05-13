@@ -137,16 +137,13 @@ func MergeSort(v []int) {
 	if len(v) > 1 {
 
 		// Find the mid index
-
 		mid := len(v) / 2
 
 		// Split the left and right halves of the array
-
 		left_half := make([]int, mid)
 		right_half := make([]int, len(v)-mid)
 
 		// Populate halves
-
 		for lh := 0; lh < mid; lh++ {
 			left_half[lh] = v[lh]
 		}
@@ -156,12 +153,10 @@ func MergeSort(v []int) {
 		}
 
 		// Recursion calls
-
 		MergeSort(left_half[:])
 		MergeSort(right_half[:])
 
 		// Merge two halves
-
 		Merge(v[:], left_half[:], right_half[:])
 	}
 }
@@ -174,9 +169,7 @@ func MergeSort(v []int) {
 * at its right and lower ones at its left
  */
 
-func QuickSort(v []int, left int, right int) {
-
-}
+func QuickSort(v []int, left int, right int) {}
 
 func Partition(v []int, left int, right int) int {
 	return 0
@@ -189,6 +182,42 @@ func Partition(v []int, left int, right int) int {
 * Goal: sorting integer arrays by counting
 **/
 
-func CountingSort(v []int) {
+func CountingSort(v []int) []int {
 
+	// Find the lowest and highest element
+	lowest := v[0]
+	highest := v[0]
+	for i := 1; i < len(v); i++ {
+		if v[i] > highest {
+			highest = v[i]
+		}
+		if v[i] < lowest {
+			lowest = v[i]
+		}
+	}
+
+	// Create counting array
+	c := make([]int, highest-lowest+1)
+
+	// Populate counting array with the frequency of each element
+	for i := 0; i < len(v); i++ {
+		c[v[i]-lowest]++
+	}
+
+	// Cumulative sum over counting array
+	for i := 1; i < len(c); i++ {
+		c[i] += c[i-1]
+	}
+
+	// Create sorted array
+	s := make([]int, len(v))
+
+	// Find the equivalent position of v[i] in array c and insert it on array s
+	for i := 0; i < len(v); i++ {
+		s[c[v[i]-lowest]-1] = v[i]
+		c[v[i]-lowest]--
+	}
+
+	// Return the sorted array
+	return s
 }
