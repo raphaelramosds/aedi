@@ -1,5 +1,7 @@
 package helper
 
+import "math/rand"
+
 /*
 * Selection Sort
 * Best case: Ω(n²)
@@ -165,14 +167,52 @@ func MergeSort(v []int) {
 * Quick Sort/Partition Sort
 * Best case: Ω(nlog(n))
 * Worst case: O(n²) if pivot isn't randomly taken, otherwise, O(nlog(n))
-* Goal: on each iteration, choose a pivot and put elements great than it
+* Goal: on each iteration, choose a pivot and put elements greater than it
 * at its right and lower ones at its left
  */
 
-func QuickSort(v []int, left int, right int) {}
+func QuickSort(v []int, left int, right int) {
+	if left < right {
+		pivot_index := PartitionV2(v, left, right)
+		QuickSort(v, left, pivot_index-1)
+		QuickSort(v, pivot_index+1, right)
+	}
+}
 
-func Partition(v []int, left int, right int) int {
-	return 0
+// Without randomization: pivot index is at the end of the partition
+func PartitionV1(v []int, left int, right int) int {
+	new_pindex := left
+	pivot := v[right]
+	for i := left; i < right; i++ {
+		if v[i] < pivot {
+			v[i], v[new_pindex] = v[new_pindex], v[i]
+			new_pindex++
+		}
+	}
+	v[new_pindex], v[right] = v[right], v[new_pindex]
+	return new_pindex
+}
+
+// With randomization: pivot index is randomly choosen
+func PartitionV2(v []int, left, right int) int {
+
+	// Generate a random index between left and right
+	random_index := rand.Intn(right-left) + left
+
+	// Put the element v[random_index] at the end
+	v[random_index], v[right] = v[right], v[random_index]
+
+	// Proceeds naturally
+	new_pindex := left
+	pivot := v[right]
+	for i := left; i < right; i++ {
+		if v[i] < pivot {
+			v[i], v[new_pindex] = v[new_pindex], v[i]
+			new_pindex++
+		}
+	}
+	v[new_pindex], v[right] = v[right], v[new_pindex]
+	return new_pindex
 }
 
 /*

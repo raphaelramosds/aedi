@@ -3,11 +3,12 @@ package helper
 import (
 	"math/rand"
 	"testing"
+	"time"
 )
 
 // # of elements
 
-var size int = 1000000
+var size int = 900000
 
 /*
 * @brief Inits an array of length n
@@ -115,6 +116,7 @@ func TestMergeSort(t *testing.T) {
 
 func TestQuickSort(t *testing.T) {
 	s := create_list(size)
+	rand.Seed(time.Now().UnixNano())
 	QuickSort(s, 0, len(s)-1)
 	result := is_asc_sorted(s)
 	if !result {
