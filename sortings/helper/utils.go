@@ -1,10 +1,5 @@
 package helper
 
-import (
-	"math/rand"
-	"time"
-)
-
 /*
 * Selection Sort
 * Best case: Ω(n²)
@@ -172,55 +167,28 @@ func MergeSort(v []int) {
 }
 
 /*
-* Quick Sort / Partition Sort
+* Quick Sort/Partition Sort
 * Best case: Ω(nlog(n))
 * Worst case: O(n²) if pivot isn't randomly taken, otherwise, O(nlog(n))
 * Goal: on each iteration, choose a pivot and put elements great than it
 * at its right and lower ones at its left
  */
 
-func QuickSort(v []int, start int, end int) {
-	if start < end {
-		pivot := PartitionV2(v[:], start, end)
-		QuickSort(v[:], start, pivot-1)
-		QuickSort(v[:], pivot+1, end)
-	}
+func QuickSort(v []int, left int, right int) {
+
 }
 
-// Without randomization
-
-func PartitionV1(v []int, start int, end int) int {
-	p_index := start
-	pivot := v[end]
-	for i := start; i < end; i++ {
-		if pivot > v[i] {
-			v[i], v[p_index] = v[p_index], v[i]
-			p_index++
-		}
-	}
-	v[p_index], v[end] = v[end], v[p_index]
-	return p_index
+func Partition(v []int, left int, right int) int {
+	return 0
 }
 
-// With randomization
+/*
+* Counting Sort
+* Best case: Ω(n)
+* Worst case: O(n+k), k >> n
+* Goal: sorting integer arrays by counting
+**/
 
-func PartitionV2(v []int, start int, end int) int {
-	p_index := start
+func CountingSort(v []int) {
 
-	// TODO too slow
-
-	rand.Seed(time.Now().UnixNano())
-	rand_p := rand.Intn(end-start+1) + start
-	v[rand_p], v[end] = v[end], v[rand_p]
-
-	pivot := v[end]
-
-	for i := start; i < end; i++ {
-		if pivot > v[i] {
-			v[i], v[p_index] = v[p_index], v[i]
-			p_index++
-		}
-	}
-	v[p_index], v[end] = v[end], v[p_index]
-	return p_index
 }

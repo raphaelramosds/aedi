@@ -51,3 +51,6 @@ for i := 0; i < n; i++ {
 | Remove from the beginning                          |      O(n)     |      O(1)      |         O(1)         |
 | Remove from index                                  |      O(n)     |      O(n)      |         O(n)         |
 
+# References
+
+[1] [Estruturas de Dados e Algoritmos - João Arthur Brunet (UFCG)](https://joaoarthurbm.github.io/eda/conteudo/)

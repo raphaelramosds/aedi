@@ -7,7 +7,7 @@ import (
 
 // # of elements
 
-var size int = 5000
+var size int = 970000
 
 /*
 * @brief Inits an array of length n
@@ -114,9 +114,18 @@ func TestMergeSort(t *testing.T) {
 
 func TestQuickSort(t *testing.T) {
 	s := create_list(size)
-	QuickSort(s[:], 0, len(s)-1)
-	result := is_asc_sorted(s[:])
+	QuickSort(s, 0, len(s)-1)
+	result := is_asc_sorted(s)
 	if !result {
 		t.Errorf("QuickSort did not sort properly")
+	}
+}
+
+func TestCountingSort(t *testing.T) {
+	s := create_list(size)
+	CountingSort(s)
+	result := is_asc_sorted(s)
+	if !result {
+		t.Errorf("CountingSort did not sort properly")
 	}
 }
