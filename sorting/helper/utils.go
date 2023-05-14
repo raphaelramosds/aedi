@@ -173,6 +173,14 @@ func MergeSort(v []int) {
 
 func QuickSort(v []int, left int, right int) {
 	if left < right {
+		pivot_index := PartitionV1(v, left, right)
+		QuickSort(v, left, pivot_index-1)
+		QuickSort(v, pivot_index+1, right)
+	}
+}
+
+func QuickSortRandomPivot(v []int, left int, right int) {
+	if left < right {
 		pivot_index := PartitionV2(v, left, right)
 		QuickSort(v, left, pivot_index-1)
 		QuickSort(v, pivot_index+1, right)

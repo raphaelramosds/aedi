@@ -8,7 +8,7 @@ import (
 
 // # of elements
 
-var size int = 900000
+var size int = 1000000
 
 /*
 * @brief Inits an array of length n
