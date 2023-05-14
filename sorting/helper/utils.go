@@ -171,19 +171,27 @@ func MergeSort(v []int) {
 * at its right and lower ones at its left
  */
 
-func QuickSort(v []int, left int, right int) {
+func QuickSort(v []int) {
+	QSort(v, 0, len(v)-1)
+}
+
+func QuickSortRandom(v []int) {
+	QSortRandom(v, 0, len(v)-1)
+}
+
+func QSort(v []int, left int, right int) {
 	if left < right {
 		pivot_index := PartitionV1(v, left, right)
-		QuickSort(v, left, pivot_index-1)
-		QuickSort(v, pivot_index+1, right)
+		QSort(v, left, pivot_index-1)
+		QSort(v, pivot_index+1, right)
 	}
 }
 
-func QuickSortRandomPivot(v []int, left int, right int) {
+func QSortRandom(v []int, left int, right int) {
 	if left < right {
 		pivot_index := PartitionV2(v, left, right)
-		QuickSort(v, left, pivot_index-1)
-		QuickSort(v, pivot_index+1, right)
+		QSortRandom(v, left, pivot_index-1)
+		QSortRandom(v, pivot_index+1, right)
 	}
 }
 
@@ -230,7 +238,7 @@ func PartitionV2(v []int, left, right int) int {
 * Goal: sorting integer arrays by counting
 **/
 
-func CountingSort(v []int) []int {
+func CountingSort(v []int) {
 
 	// Find the lowest and highest element
 	lowest := v[0]
@@ -266,6 +274,8 @@ func CountingSort(v []int) []int {
 		c[v[i]-lowest]--
 	}
 
-	// Return the sorted array
-	return s
+	// Copiar array
+	for i := 0; i < len(v); i++ {
+		v[i] = s[i]
+	}
 }

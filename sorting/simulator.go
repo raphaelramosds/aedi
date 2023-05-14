@@ -76,33 +76,41 @@ func display_statistics(s *AlgorithmPerfomance) {
 * @param fashion string
  */
 
+type SortFunc func(v []int)
+
 func simulate(label string, sorting string, an int, fashion string) {
+
 	algorithm := AlgorithmPerfomance{name: label}
+	var method SortFunc
+
+	switch sorting {
+	case "selection":
+		method = helper.SelectionSortIP
+	case "bubble":
+		method = helper.BubbleSort
+	case "insertion":
+		method = helper.InsertionSortIPV5
+	case "merge":
+		method = helper.MergeSort
+	case "quick":
+		method = helper.QuickSort
+	case "quick-random":
+		method = helper.QuickSortRandom
+	case "counting":
+		method = helper.CountingSort
+	default:
+		fmt.Println("I don't know this method")
+		return
+	}
+
 	for i := 0; i < an; i++ {
-		length := int(math.Pow(5, float64(i)))
+		length := int(math.Pow(3, float64(i)))
 		v := create_list(length, fashion)
 		time_start := time.Now()
-		switch sorting {
-		case "selection":
-			helper.SelectionSortIP(v)
-		case "bubble":
-			helper.BubbleSort(v)
-		case "insertion":
-			helper.InsertionSortIPV5(v)
-		case "merge":
-			helper.MergeSort(v)
-		case "quick":
-			helper.QuickSort(v, 0, len(v)-1)
-		case "quick-random":
-			helper.QuickSortRandomPivot(v, 0, len(v)-1)
-		case "counting":
-			helper.CountingSort(v)
-		default:
-			fmt.Println("I don't know this method")
-			return
-		}
+		method(v)
 		time_elapsed := time.Since(time_start)
 		save_statistics(&algorithm, time_elapsed.String(), length)
 	}
+
 	display_statistics(&algorithm)
 }
