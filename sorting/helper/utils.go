@@ -171,27 +171,19 @@ func MergeSort(v []int) {
 * at its right and lower ones at its left
  */
 
-func QuickSort(v []int) {
-	QSort(v, 0, len(v)-1)
-}
-
-func QuickSortRandom(v []int) {
-	QSortRandom(v, 0, len(v)-1)
-}
-
-func QSort(v []int, left int, right int) {
+func QuickSort(v []int, left int, right int) {
 	if left < right {
 		pivot_index := PartitionV1(v, left, right)
-		QSort(v, left, pivot_index-1)
-		QSort(v, pivot_index+1, right)
+		QuickSort(v, left, pivot_index-1)
+		QuickSort(v, pivot_index+1, right)
 	}
 }
 
-func QSortRandom(v []int, left int, right int) {
+func QuickSortRandom(v []int, left int, right int) {
 	if left < right {
 		pivot_index := PartitionV2(v, left, right)
-		QSortRandom(v, left, pivot_index-1)
-		QSortRandom(v, pivot_index+1, right)
+		QuickSortRandom(v, left, pivot_index-1)
+		QuickSortRandom(v, pivot_index+1, right)
 	}
 }
 
