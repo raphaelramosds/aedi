@@ -160,7 +160,7 @@ func second_experiment() {
 	// quickrandom_desc.Simulate()
 
 	// Counting Sort (k >> n) e Quick Sort (pivô aleatório)
-	// Conclusão: o counting sort é pior do que o quick sort para um array pequeno com valores muito grandes
+	// Conclusão: o counting sort é pior do que o quick sort para um array com valores muito grandes
 
 	// counting_sci := AlgorithmPerfomance{label: "Counting Sort (SCI)", sorting: "counting", num_elements: n, fashion: "sci"}
 	// quick_sci := AlgorithmPerfomance{label: "Quick Sort (SCI)", sorting: "quick-random", num_elements: n, fashion: "sci"}
