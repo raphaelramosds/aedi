@@ -54,11 +54,11 @@ Porque ao escolher um elemento para ser inserido, todos na mão esquerda já sã
 
 **4. Por que o MergeSort sempre tem o mesmo desempenho para qualquer cenário (vetor organizado de diferentes formas)?**
 
-Porque ele faz chamadas recursivas sempre com a metade da lista - independente da sua natureza.
+Porque suas chamadas recursivas sempre vão levar o mesmo tempo para retornar uma metade ordenada, dado que lhe foi dada duas outras metades ordenadas
 
 **5. Por que o pior caso do QuickSort é O(n²)?**
 
-Porque se a este algoritmo for dado um vetor em ordem ascendente, ele vai sempre percorrer até o último elemento da partição com n - i elementos, em que i é o nùmero da iteração e n o tamanho da lista original
+Porque se a este algoritmo for dado um vetor em ordem ascendente, ele vai sempre percorrer até o último elemento da partição com n - i elementos em cada uma das n chamadas recursivas, em que i é o nùmero da iteração e n o tamanho da lista original
 
 **6. Como mitigar a probabilidade do pior caso acontecer no QuickSort?**
 
