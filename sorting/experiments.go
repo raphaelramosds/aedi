@@ -9,10 +9,15 @@ import (
 	"dca0208.com/sortings/helper"
 )
 
+// Struct da simulação
+
 type AlgorithmPerfomance struct {
+
+	// Inner properties
 	v       []int
 	elapsed string
 
+	// Fillable properties
 	label        string
 	sorting      string
 	fashion      string
@@ -98,14 +103,11 @@ func (algorithm *AlgorithmPerfomance) Simulate() {
 * de ordenação não vai influenciar, independente da disposição dos elementos
  */
 
-func first_experiment() {
-
-	// # of elements
-	n := 1000
+func first_experiment(n int) {
 
 	// Conclusão: o três algoritmos parecem ter perfomance muito rápidas para vetores abaixo de 1000 elementos, independente da disposição
 
-	// random
+	// Random
 	counting_random := AlgorithmPerfomance{label: "Counting Sort", sorting: "counting", num_elements: n, fashion: "random"}
 	quick_random := AlgorithmPerfomance{label: "Quick Sort", sorting: "quick", num_elements: n, fashion: "random"}
 	bubble_random := AlgorithmPerfomance{label: "Bubble Sort", sorting: "bubble", num_elements: n, fashion: "random"}
@@ -116,7 +118,7 @@ func first_experiment() {
 
 	fmt.Println("")
 
-	// asc
+	// ASC
 	counting_asc := AlgorithmPerfomance{label: "Counting Sort (ASC)", sorting: "counting", num_elements: n, fashion: "asc"}
 	quick_asc := AlgorithmPerfomance{label: "Quick Sort (ASC)", sorting: "quick", num_elements: n, fashion: "asc"}
 	bubble_asc := AlgorithmPerfomance{label: "Bubble Sort (ASC)", sorting: "bubble", num_elements: n, fashion: "asc"}
@@ -127,7 +129,7 @@ func first_experiment() {
 
 	fmt.Println("")
 
-	// desc
+	// DESC
 	counting_desc := AlgorithmPerfomance{label: "Counting Sort (DESC)", sorting: "counting", num_elements: n, fashion: "desc"}
 	quick_desc := AlgorithmPerfomance{label: "Quick Sort (DESC)", sorting: "quick", num_elements: n, fashion: "desc"}
 	bubble_desc := AlgorithmPerfomance{label: "Bubble Sort (DESC)", sorting: "bubble", num_elements: n, fashion: "desc"}
@@ -178,4 +180,65 @@ func second_experiment() {
 	quick_asc.Simulate()
 	quick_desc.Simulate()
 	insertion.Simulate()
+}
+
+/*
+* Fato 3: MergeSort tem sempre um desempenho muito bom, independente da
+* disposição dos elementos no vetor.
+ */
+
+func third_experiment(n int) {
+
+	// Merge Sort x Merge Sort ASC x Merge Sort DESC
+	merge_random := AlgorithmPerfomance{label: "Merge Sort", sorting: "merge", num_elements: n, fashion: "random"}
+	merge_asc := AlgorithmPerfomance{label: "Merge Sort (ASC)", sorting: "merge", num_elements: n, fashion: "asc"}
+	merge_desc := AlgorithmPerfomance{label: "Merge Sort (DESC)", sorting: "merge", num_elements: n, fashion: "desc"}
+
+	merge_random.Simulate()
+	merge_asc.Simulate()
+	merge_desc.Simulate()
+}
+
+/*
+* Fato 4: O pior caso do Quicksort é com o vetor ordenado de forma
+* crescente/decrescente. O Quicksort com randomização de pivô resolve
+* esse mau desempenho.
+ */
+
+func fourth_experiment(n int) {
+
+	// Quick Sort ASC x Quick Sort (pivô aleatório) ASC
+
+	quick_asc := AlgorithmPerfomance{label: "Quick Sort (ASC)", sorting: "quick", num_elements: n, fashion: "asc"}
+	quick_random_asc := AlgorithmPerfomance{label: "Quick Sort Random (ASC)", sorting: "quick-random", num_elements: n, fashion: "asc"}
+
+	quick_asc.Simulate()
+	quick_random_asc.Simulate()
+
+	fmt.Println("")
+
+	// Quick Sort DESC x Quick Sort (pivô aleatório) DESC
+
+	quick_desc := AlgorithmPerfomance{label: "Quick Sort (DESC)", sorting: "quick", num_elements: n, fashion: "desc"}
+	quick_random_desc := AlgorithmPerfomance{label: "Quick Sort Random (DESC)", sorting: "quick-random", num_elements: n, fashion: "desc"}
+
+	quick_desc.Simulate()
+	quick_random_desc.Simulate()
+}
+
+/*
+* Fato 5: Explique quando o CountingSort tem bom desempenho e quando
+* tem mau desempenho mostrando os resultados através dos experimentos
+ */
+
+func fifth_experiment(n int) {
+
+	// Counting Sort (k >> n) x Counting Sort (k < n)
+	// Conclusão: quanto mais alto for os valores dos elementos do array, pior a perfomance do counting
+
+	counting_worst := AlgorithmPerfomance{label: "Counting Sort (k >> n)", sorting: "counting", num_elements: n, fashion: "sci"}
+	counting_best := AlgorithmPerfomance{label: "Counting Sort (k < n)", sorting: "counting", num_elements: n, fashion: "random"}
+
+	counting_worst.Simulate()
+	counting_best.Simulate()
 }
