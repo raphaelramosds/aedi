@@ -67,17 +67,3 @@ O índice do pivô em cada iteração deve ser escolhido aleatoriamente e a posi
 **7. O CountingSort é melhor ou pior do que o MergeSort? E em relação ao QuickSort?**
 
 Ele possui melhor perfomance que os dois no seu melhor caso devido a complexidade linear. Porém, ele se torna pior que os dois caso o intervalo dos seus elementos seja suficientemente grande.
-
-## Experimentos
-
-A seguir são apresentados 5 fatos sobre algoritmos de ordenação. Planeje, execute experimentos, e apresente resultados que evidenciem cada afirmação.
-
-> **Fato 1:** Para vetores de tamanho pequeno, a performance da maioria dos algoritmos de ordenação não vai influenciar, independente da disposição dos elementos
-
-> **Fato 2:** Vetor de tamanho grande, a performance do algoritmo influencia de forma significativa. Além disso, dependendo da disposição (e valores) dos elementos no vetor, podemos experimentar performances bem diferentes (melhor e pior caso).
-
-> **Fato 3:** MergeSort tem sempre um desempenho muito bom, independente da disposição dos elementos no vetor.
-
-> **Fato 4:** O pior caso do Quicksort é com o vetor ordenado de forma crescente/decrescente. O Quicksort com randomização de pivô resolve esse mau desempenho.
-
-> **Fato 5:** Explique quando o CountingSort tem bom desempenho e quando tem mau desempenho mostrando os resultados através dos experimentos.
