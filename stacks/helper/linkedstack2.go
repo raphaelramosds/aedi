@@ -16,6 +16,7 @@ type LinkedStack struct {
 
 // Public functions
 
+// TODO insert af beginning since it's a linked stack
 func (ls *LinkedStack) Push(value int) {
 	newNode := Node{value, nil}
 	curr := ls.head
@@ -30,6 +31,7 @@ func (ls *LinkedStack) Push(value int) {
 	ls.size++
 }
 
+// TODO pop at beginning since it's a linked stack
 func (ls *LinkedStack) Pop() (int, error) {
 	if ls.size == 0 {
 		return -1, errors.New("stack is empty")
