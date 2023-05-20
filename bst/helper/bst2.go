@@ -74,7 +74,7 @@ func (node *BSTNode) PrintPos() {
 		node.left.PrintPos()
 	}
 	if node.right != nil {
-		node.left.PrintPos()
+		node.right.PrintPos()
 	}
 	fmt.Println(node.value)
 }
