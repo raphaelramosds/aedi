@@ -6,19 +6,19 @@ Há duas formas para percorrer uma árvore: em largura e em profundidade. A que 
 
 Para lembrar desses três tipos de navegação, lembre que o prefixo desses nomes dizem sobre em qual ordem a raiz vai ser explorada
 
-1. Pré ordem: a raíz é imprimida antes do nó esquerdo
+1. **Pré ordem:** a raíz é imprimida antes do nó esquerdo
 
 ```
 Raiz -> Nó esquerdo -> Nó direito
 ```
 
-2. Em ordem: a raiz é imprimida logo após o nó esquerdo ser explorado
+2. **Em ordem:** a raiz é imprimida logo após o nó esquerdo ser explorado
 
 ```
 Nó esquerdo -> Raiz -> Nó direito
 ```
 
-3. Pós ordem: a raiz é imprimida logo após o nó direito ser explorado
+3. **Pós ordem:** a raiz é imprimida logo após o nó direito ser explorado
 
 ```
 Nó esquerdo -> Nó direito -> Raiz
