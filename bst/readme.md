@@ -8,18 +8,18 @@ Para lembrar desses três tipos de navegação, lembre que o prefixo desses nome
 
 1. Pré ordem: a raíz é imprimida antes do nó esquerdo
 
-```bash
+```
 Raiz -> Nó esquerdo -> Nó direito
 ```
 
 2. Em ordem: a raiz é imprimida logo após o nó esquerdo ser explorado
 
-```bash
+```
 Nó esquerdo -> Raiz -> Nó direito
 ```
 
 3. Pós ordem: a raiz é imprimida logo após o nó direito ser explorado
 
-```bash
+```
 Nó esquerdo -> Nó direito -> Raiz
 ```
