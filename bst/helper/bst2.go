@@ -1,43 +1,80 @@
 package helper
 
-type BinarySearchTree struct {
-	root *NodeBST
-}
+import "fmt"
 
-func (bst *BinarySearchTree) Insert(value int) {
-	var parent *NodeBST
-
-	curr := bst.root
-	new_node := NodeBST{value, nil, nil}
-
-	for curr != nil {
-		parent = curr
-		if value < curr.data {
-			curr = curr.left
-		} else {
-			curr = curr.right
-		}
-	}
-
-	if parent == nil {
-		bst.root = &new_node
-	} else if value < parent.data {
-		parent.left = &new_node
+func (node *BSTNode) Insert(value int) {
+	if node.left == nil && node.right == nil && node.value == 0 {
+		node.value = value
 	} else {
-		parent.right = &new_node
+		if value <= node.value {
+			if node.left != nil {
+				node.left.Insert(value)
+			} else {
+				node.left = &BSTNode{value: value}
+			}
+		} else {
+			if node.right != nil {
+				node.right.Insert(value)
+			} else {
+				node.right = &BSTNode{value: value}
+			}
+		}
 	}
 }
 
-func (bst *BinarySearchTree) Search(value int) bool {
-	curr := bst.root
-	for curr != nil {
-		if value == curr.data {
-			return true
-		} else if value < curr.data {
-			curr = curr.left
-		} else {
-			curr = curr.right
-		}
+func (node *BSTNode) Search(value int) bool {
+	if value == node.value {
+		return true
+	} else if value < node.value && node.left != nil {
+		return node.left.Search(value)
+	} else if value > node.value && node.right != nil {
+		return node.right.Search(value)
 	}
 	return false
+}
+
+func (node *BSTNode) Min() int {
+	if node.left == nil {
+		return node.value
+	} else {
+		return node.left.Min()
+	}
+}
+
+func (node *BSTNode) Max() int {
+	if node.right == nil {
+		return node.value
+	} else {
+		return node.right.Max()
+	}
+}
+
+func (node *BSTNode) PrintPre() {
+	fmt.Println(node.value)
+	if node.left != nil {
+		node.left.PrintPre()
+	}
+	if node.right != nil {
+		node.right.PrintPre()
+	}
+}
+
+func (node *BSTNode) PrintIn() {
+	if node.left != nil {
+		node.left.PrintIn()
+	}
+	fmt.Println(node.value)
+	if node.right != nil {
+		node.right.PrintIn()
+	}
+}
+
+func (node *BSTNode) PrintPos() {
+	if node.left != nil {
+		node.left.PrintPos()
+	}
+	if node.right != nil {
+		node.left.PrintPos()
+	}
+	fmt.Println(node.value)
 }

@@ -1,23 +1,18 @@
 package main
 
-import (
-	"fmt"
-
-	"dca0208.com/bst/helper"
-)
+import "dca0208.com/bst/helper"
 
 func main() {
-	primes := [6]int{3, 1, 5, 7, 11, 13}
-	bst := helper.BinarySearchTree{}
+	primes := [8]int{3, 1, 5, 7, 11, 13, 3, 5}
+	root := &helper.BSTNode{}
 
+	// Inserting elements
 	for _, element := range primes {
-		bst.Insert(element)
+		root.Insert(element)
 	}
 
-	if bst.Search(5) {
-		fmt.Println("Found it")
-	} else {
-		fmt.Println("Not found")
-	}
+	// Traversals
+	// root.PrintIn()
+	root.PrintPre()
 
 }
