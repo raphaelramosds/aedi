@@ -34,26 +34,26 @@ func Search(root **BSTNode, value int) bool {
 	}
 }
 
-func PreOrderFashion(root **BSTNode) {
+func PrintPre(root **BSTNode) {
 	if *root != nil {
 		fmt.Printf("%d ", (*root).value)
-		InOrderFashion(&(*root).left)
-		InOrderFashion(&(*root).right)
+		PrintPre(&(*root).left)
+		PrintPre(&(*root).right)
 	}
 }
 
-func InOrderFashion(root **BSTNode) {
+func PrintIn(root **BSTNode) {
 	if *root != nil {
-		InOrderFashion(&(*root).left)
+		PrintIn(&(*root).left)
 		fmt.Printf("%d ", (*root).value)
-		InOrderFashion(&(*root).right)
+		PrintIn(&(*root).right)
 	}
 }
 
-func PostOrderFashion(root **BSTNode) {
+func PrintPost(root **BSTNode) {
 	if *root != nil {
-		InOrderFashion(&(*root).left)
-		InOrderFashion(&(*root).right)
+		PrintPost(&(*root).left)
+		PrintPost(&(*root).right)
 		fmt.Printf("%d ", (*root).value)
 	}
 }

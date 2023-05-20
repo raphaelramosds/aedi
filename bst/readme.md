@@ -1,5 +1,7 @@
 # Árvores de  Busca Binária
 
+A pasta helper possui duas implementações de BST: a primeira está em `bst.go` que faz uma implementação estruturada, e a segunda está em `bst2.go` que faz uma implementação mais próxima da orientação a objetos.
+
 ## Navegando na árvore
 
 Há duas formas para percorrer uma árvore: em largura e em profundidade. A que foi implementada aqui foi os métodos em profundidade, que são três: pré ordem, em ordem e pós ordem.
