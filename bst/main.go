@@ -18,16 +18,13 @@ func main() {
 	}
 
 	// Traversals
-
-	// root.PrintIn()
+	root.PrintIn()
 	// root.PrintPre()
 	// root.PrintPos()
 
-	// Searches
-	fmt.Println(root.Search(3))
-
 	// Max and minimum
-	fmt.Println(root.Max())
-	fmt.Println(root.Min())
+	fmt.Println("Valor máximo:", root.Max())
+	fmt.Println("Valor mínimo:", root.Min())
 
+	fmt.Println(root.Height())
 }
