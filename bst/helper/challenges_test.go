@@ -72,3 +72,13 @@ func TestSize(t *testing.T) {
 		t.Errorf("Expected %d nodes, but got %d", expected, result)
 	}
 }
+
+// TODO segmentation fault
+func TestCreateBst(t *testing.T) {
+	v := [6]int{5, 1, 2, 3, 4, 8}
+	root := createBst(v[:])
+	result := root.isBst()
+	if !result {
+		t.Errorf("This binary tree is a BST")
+	}
+}

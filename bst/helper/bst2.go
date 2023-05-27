@@ -106,15 +106,13 @@ func (node *BSTNode) Height() int {
 func (node *BSTNode) Remove(value int) *BSTNode {
 
 	// Procurar nó a ser removido
-
 	if value > node.value {
-		node.right.Remove(value)
+		node.right = node.right.Remove(value)
 	} else if value < node.value {
-		node.left.Remove(value)
+		node.left = node.left.Remove(value)
 	} else {
 
 		// Nó encontrado
-
 		if node.left == nil && node.right == nil { // Caso 1: nó folha (1 filho)
 			// O pai dele apontará para nil
 			return nil

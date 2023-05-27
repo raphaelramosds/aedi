@@ -1,5 +1,9 @@
 package helper
 
+import (
+	"sort"
+)
+
 type BstNode struct {
 	left  *BstNode
 	value int
@@ -44,7 +48,18 @@ func (bstNode *BstNode) Size() int {
 	return count
 }
 
+func (bstNode *BstNode) addBstNode(v []int, start int, end int) {
+	if start < end {
+		mid := (start + end) / 2
+		bstNode.value = v[mid]
+		bstNode.left.addBstNode(v, start, mid-1)
+		bstNode.right.addBstNode(v, mid+1, end)
+	}
+}
+
 func createBst(v []int) *BstNode {
-	bstNode := &BstNode{}
-	return bstNode
+	sort.Ints(v)
+	root := &BstNode{}
+	root.addBstNode(v, 0, len(v)-1)
+	return root
 }
