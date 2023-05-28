@@ -73,7 +73,6 @@ func TestSize(t *testing.T) {
 	}
 }
 
-// TODO segmentation fault
 func TestCreateBst(t *testing.T) {
 	v := [6]int{5, 1, 2, 3, 4, 8}
 	root := createBst(v[:])

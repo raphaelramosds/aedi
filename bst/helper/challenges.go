@@ -57,6 +57,7 @@ func (bstNode *BstNode) addBstNode(v []int, start int, end int) {
 	}
 }
 
+// TODO segmentation fault
 func createBst(v []int) *BstNode {
 	sort.Ints(v)
 	root := &BstNode{}
