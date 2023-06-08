@@ -69,10 +69,12 @@ Todas elas são O(n) no pior caso
 | PrintPre | O(n)                  | O(n)                      |
 | PrintIn  | O(n)                  | O(n)                      |
 | PrintPos | O(n)                  | O(n)                      |
-| Height   | O(h)                  | O(h)                      |
+| Height   | O(h)                  | O(n)                      |
 | Remove   | O(h)                  | O(n)                      |
 
 **Observação:** Remove e Add se tornam O(n) na árvore completa (não BST) porque, no pior caso, o critério para fazer essas operações pode se basear em percorrer todos os elementos da árvore.
+
+**Observação:** A complexidade de Height para uma árvore completa (não BST) é O(n) se ela não for cheia, pois temos que que calcular a altura da subárvore esquerda e direita percorrendo todos os nós destas subárvore. No entanto, se ela for cheia, o número de iterações sempre a esquerda (ou sempre a direita) na subárvore esquerda ou direita vai te retornar a altura, pois ambas subárvores possuem a mesma altura.
 
 **8.Explique os possíveis casos de remoção em uma BST. Como deve-se proceder em cada caso?**
 
