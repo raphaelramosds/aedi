@@ -4,6 +4,34 @@
 
 > O nome AVL vem de seus criadores soviéticos Adelson Velsky e Landis, e sua primeira referência encontra-se no documento "Algoritmos para organização da informação" de 1962.
 
+## Conceitos
+
+### Fator de balanceamento
+
+O fator de balanceamento de um nó é a diferença entre a altura da sua subárvore direita (Hd) e a altura da subárvore esquerda (He)
+
+```
+Fator de balanceamento = Hd - He
+```
+
+### Árvore balanceada
+
+> Uma árvore é dita balanceada se todos os seus nós tiverem fator de balanceamento -1, 0, ou 1. Se pelo menos um dos nós tiver um fator de balanceamento maior que 1 ou menor que -1, ela é dita desbalanceada.
+
+### Tipo estruturado Nó
+
+Para fazer o rebalanceamento, adicionamos mais duas propriedades ao tipo estruturado BSTNode: a altura do nó `height` e seu fator de balanceamento `bf`
+
+```go
+type BSTNode struct {
+	left   *BSTNode
+	value  int
+	height int
+	bf     int
+	right  *BSTNode
+}
+```
+
 ## Rotações
 
 A estratégia que uma árvore AVL utiliza para se rebalancear são as rotações de nós desbalanceados.
@@ -32,29 +60,37 @@ Já na **rotação à direita** de um nó raiz, seguem-se os passos
 - A raiz original vira filho da direita da nova raiz
 - Retornamos o endereço da nova raiz `left`
 
-## Rebalanceamento
+### Rotações duplas
 
-Para fazer o rebalanceamento, adicionamos mais duas propriedades ao tipo estruturado BSTNode: a altura do nó `height` e seu fator de balanceamento `bf`
-
-```go
-type BSTNode struct {
-	left   *BSTNode
-	value  int
-	height int
-	bf     int
-	right  *BSTNode
-}
-```
-
-O fator de balanceamento de um nó é a diferença entre a altura da sua subárvore direita (Hd) e a altura da subárvore esquerda (He)
+Existem alguns casos em que apenas uma rotação à esquerda ou a direita não vão rebalancear uma árvore. Tome como exemplo a árvore abaixo: como tentativa de diminuir o fator de balanceamento 3 da raiz, rotacionamos para direita o nó 64
 
 ```
-Fator de balanceamento = Hd - He
+        2                   2
+       / \                 / \
+      1   64              1   32
+          / \                /  \
+         32  70    →        16   64
+        /   /              /       \
+       16  30             12        70
+      /                            /
+    12                           30  
 ```
 
-## Casos de balanceamento
+Nada mudou! a raiz continua com fator de balanceamento 3, tornando a árvore desbalanceada. Mas, se prosseguimos rotacionando o nó 2 para a esquerda, teremos uma árvore balanceada
 
-Existem alguns casos em que apenas uma rotação à esquerda ou a direita não vão rebalancear a árvore cujo nó analisado é a raiz. Para identificar esses casos, você precisa analisar o fator de balanceamento do nó que você quer rotacionar (o Nó raiz `root`) e os fatores de balanceamento dos seus filhos esquerdo e direito.
+```
+        32
+        / \
+       2   64
+      / \    \
+     1   16   70    →   retorne endereço de 32
+        /    /
+       12  30
+```
+
+## Análise do balanceamtno
+
+Para identificar casos estranhos de rotação dupla como o apresentado na seção anterior, você precisa analisar o fator de balanceamento do nó que você quer rotacionar (o Nó raiz `root`) e os fatores de balanceamento dos seus filhos esquerdo e direito.
 
 A seguir estão duas subseções que apresentam as operações de rotações que precisam ser feitas para que a árvore do nó raiz analisado seja balanceada. 
 
