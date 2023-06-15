@@ -114,7 +114,7 @@ Após a rotação, vamos ter que atualizar esses valores para
 - h(1) = 1, fb(1) = 0
 - h(3) = 2, fb(3) = -1
 
-Como exercício, calcule os parâmetros de altura e fator de balanceamento dos nós 2 e 4 antes e depois da rotação, e perceberá que eles seguem intactos. 
+Como exercício, calcule os parâmetros de altura e fator de balanceamento dos nós 2 e 4 antes e depois da rotação, e perceberá que eles seguem intactos.
 
 Logo, para atualizar os parâmetros de um nó, seguimos o algoritmo
 
@@ -129,7 +129,7 @@ Abaixo a assinatura da função para ser implementada.
 func (bstNode *BstNode) UpdateProperties()
 ```
 
-> Nas rotações, a ordem adequada é atualizar as propriedades da antiga raiz e depois as propriedades da nova raiz. Até porque vimos no algoritmo acima que o nó pai se baseia nas propriedades do filho para ser atualizado.
+> Nas rotações, a ordem adequada é atualizar as propriedades da antiga raiz e depois as propriedades da nova raiz. Até porque vimos no algoritmo acima que o nó pai se baseia nas propriedades do filho para ser atualizado. Entender isso é importante para compreender o rebalanceamento a medida em que inserimos e removemos elementos da árvore, pois ela vai se rebalanceando do nó folha até a raiz por meio de chamadas recursivas. Então, se começamos a atualizar as propriedades das folhas, os seus pais vão se atualizar tendo como base as propriedades corretas dos seus filhos.
 
 ## Análise do balanceamento
 
