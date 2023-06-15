@@ -92,33 +92,68 @@ Nada mudou! a raiz continua com fator de balanceamento 3, tornando a árvore des
 
 ## Atualização dos parâmeros
 
+As operações de rotação em AVLs são necessárias para seu rebalanceamento, mas ao mesmo tempo modificam as propriedades de altura e fator de balanceamento da antiga e da nova raiz. 
 
+Por exemplo, abaixo está ilustrada a rotação à esquerda do nó 1 na árvore apresentada
+
+```
+    1             3
+     \           / \
+      3    →    1   4    →  retorne endereço de 3
+     / \         \
+    2   4         2
+```
+
+Observe que antes da rotação, tinhamos
+
+- h(1) = 2, fb(1) = 1
+- h(3) = 1, fb(3) = 0
+
+Após a rotação, vamos ter que atualizar esses valores para
+
+- h(1) = 1, fb(1) = 0
+- h(3) = 2, fb(3) = -1
+
+Como exercício, calcule os parâmetros de altura e fator de balanceamento dos nós 2 e 4 antes e depois da rotação, e perceberá que eles seguem intactos. 
+
+Logo, para atualizar os parâmetros de um nó, seguimos o algoritmo
+
+- Se o nó não tem filhos, sua altura e fator de balanço é zero
+- Se o nó tem filhos, recupere a altura do filho direito e esquerdo
+- A altura do nó será a maior altura entre as duas
+- O fator de balanço será a diferença entre a altura direita e esquerda
+
+Abaixo a assinatura da função para ser implementada.
+
+```go
+func (bstNode *BstNode) UpdateProperties()
+```
+
+> Nas rotações, a ordem adequada é atualizar as propriedades da antiga raiz e depois as propriedades da nova raiz. Até porque vimos no algoritmo acima que o nó pai se baseia nas propriedades do filho para ser atualizado.
 
 ## Análise do balanceamento
 
-Para identificar casos estranhos de rotação dupla como o apresentado na seção anterior, você precisa analisar o fator de balanceamento do nó que você quer rotacionar (o Nó raiz `root`) e os fatores de balanceamento dos seus filhos esquerdo e direito.
+Para identificar casos estranhos de rotação dupla como o apresentado na seção anterior, você precisa analisar o fator de balanceamento do nó que você quer rotacionar (o nó raiz `root`) e os fatores de balanceamento dos seus filhos esquerdo e direito.
 
 A seguir estão duas subseções que apresentam as operações de rotações que precisam ser feitas para que a árvore do nó raiz analisado seja balanceada. Nessas análises, considere que o objeto `root *BSTNode`, pertencente a uma árvore binária de busca, foi passado como parâmetro para uma função de balanceamento e nela foram efetuadas as operações presentes na coluna Operações.
 
 ### Análise da subárvore esquerda
 
-| bf Nó raiz | bf Filho esquerdo | Operações                               |
-|------------|-------------------|-----------------------------------------|
-| -2         | -1                | `root.RotRight()`                       |
-| -2         | 0                 | `root.RotRight()`                       |
-| -2         | 1                 | `root.left.RotLeft()` `root.RotRight()` |
-
 O primeiro caso de rebalanceamento, `bf(raiz) <= -2` e `bf(left) = -1`, é chamado de Esquerda-Esquerda. Nele, a subárvore pende para a esquerda e seu filho esquerdo também.
 
 No segundo caso, `bf(raiz) <= -2` e `bf(left) = 0`, a subárvore esquerda ainda pende para a esquerda, mas a sua subárvore esquerda está levemente balanceada. 
 
-Apesar dessas diferenças, o balanceamento consite em rotacionar a raiz para a direita no primeiro e no segundo caso. Abaixo a assinatura da função para ser implementada.
+Apesar dessas diferenças, o balanceamento nesses dois casos consiste em rotacionar a raiz para a direita.
+
+Abaixo a assinatura da função para ser implementada.
 
 ```go
 func (bstNode *BstNode) RebalanceLeftLeft() *BstNode
 ```
 
-O terceiro caso, `bf(raiz) <= -2` e `bf(left) = 1`, é chamado de Esquerda-Direita. Nele, a subárvore pende para a esquerda, mas sua subárvore esquerda pende para a direita. Abaixo a assinatura da função para ser implementada.
+O terceiro caso, `bf(raiz) <= -2` e `bf(left) = 1`, é chamado de Esquerda-Direita. Nele, a subárvore pende para a esquerda, mas sua subárvore esquerda pende para a direita. Nesse caso, para balancear fazemos a rotação a esquerda da nova raiz e logo após a rotação a direita da antiga raiz.
+
+Abaixo a assinatura da função para ser implementada.
 
 ```go
 func (bstNode *BstNode) RebalanceLeftRight() *BstNode
@@ -126,15 +161,11 @@ func (bstNode *BstNode) RebalanceLeftRight() *BstNode
 
 ### Análise da subárvore direita
 
-| bf Nó raiz | bf Filho direito | Operações                                |
-|------------|------------------|------------------------------------------|
-| 2          | 1                | `root.RotLeft()`                         |
-| 2          | 0                | `root.RotLeft()`                         |
-| 2          | -1               | `root.right.RotRight()` `root.RotLeft()` |
-
 No primeiro caso de rebalanceamento, `bf(raiz) >= 2` e `bf(right) = 1`, é chamado de Direita-Direita. Nele, a subárvore pende para a direita e sua subárvore direita também.
 
 No segundo caso, `bf(raiz) >= 2` e `bf(right) = 0`, a subárvore ainda pende para a direita, mas a sua subárvore direita está levemente balanceada.
+
+Apesar dessas diferenças, o balanceamento nesses dois casos consiste em rotacionar a raiz para a esquerda.
 
 Abaixo a assinatura da função para ser implementada.
 
@@ -142,7 +173,9 @@ Abaixo a assinatura da função para ser implementada.
 func (bstNode *BstNode) RebalanceRightRight() *BstNode
 ```
 
-No terceiro caso, `bf(raiz) >= 2` e `bf(right) = -1`, é chamado de Direita-Esquerda. Nele, a subárvore pende para a direita, mas sua subárvore direita pende para a esquerda. Abaixo a assinatura da função para ser implementada.
+No terceiro caso, `bf(raiz) >= 2` e `bf(right) = -1`, é chamado de Direita-Esquerda. Nele, a subárvore pende para a direita, mas sua subárvore direita pende para a esquerda. Nesse caso, para balancear fazemos a rotação a direita da nova raiz e logo após a rotação a esquerda da antiga raiz.
+
+Abaixo a assinatura da função para ser implementada.
 
 ```go
 func (bstNode *BstNode) RebalanceRightLeft() *BstNode
