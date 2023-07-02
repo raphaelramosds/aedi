@@ -4,6 +4,11 @@ package helper
 const MAX_LF = 0.75
 
 // Estruturas básicas
+
+// Obs. É necessário guardar o valor e a chave na tupla
+// pois mais de uma chave podem ser mapeadas para uma
+// mesma posição da tabela hash
+
 type Tuple struct {
 	value string
 	key   int
@@ -76,12 +81,11 @@ func (table *HashTable) Remove(key int) {
 	for i, tuple := range array {
 		if tuple.key == key {
 			// Remova o elemento
-			table.buckets[index] = append(array[:i], array[:i+1]...)
+			table.buckets[index] = append(array[:i], array[i+1:]...)
 			table.length--
 			break
 		}
 	}
-
 }
 
 // Funções auxiliares
@@ -91,9 +95,12 @@ func (table *HashTable) increase_buckets() {
 	new_array := make([][]Tuple, 8*len(table.buckets))
 
 	// Mover os elementos da tabela anterior
-	for index, bucket := range table.buckets {
+	for _, bucket := range table.buckets {
 		for _, tuple := range bucket {
-			new_array[index] = append(table.buckets[index], tuple)
+			// Mapear chave da tupla no novo array
+			index := tuple.key % len(new_array)
+			// Inseri-la no bucket
+			new_array[index] = append(new_array[index], tuple)
 		}
 	}
 
