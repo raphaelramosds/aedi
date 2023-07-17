@@ -12,32 +12,31 @@ How to set up a golang enviroment? Follows these steps
 go mod init domain.com/subdomain
 ```
 
-3. A go.mod file will be created. Your external functions should be declared on helper folder, as the file structure below suggests
+3. A go.mod file will be created. Your external functions should be declared on a folder. Here, I've named this folder as `helper`
 
 ```bash
-helper/arraylist2.go
-helper/linkedlist2.go
+helper/mylib.go
 ...
 main.go
 go.mod
 ```
 
-Then, say, you want to use Init() method of ArrayList and the struct ArrayList is defined on arraylist2.go. First go to main.go and call them by means of a instance of helper package, like this
+Then, say, you want to use Init() method of a struct List that is defined on mylib.go. For doing so, first go to main.go and call it by means of an instance of helper package, like this
 
 ```go
 package main
 import "exemplo.com/subdominio/helper"
 
 func main() {
-	var arraylist helper.ArrayList
-	arraylist.Init(10)
+	var instance helper.List
+	instance.Init(10)
 }
 ```
 
-5. Then, on arraylist2.go, you must invoke, on the first line, the helper package
+5. Then, on mylib.go, you must invoke, on the first line, the helper package
 
 ```go
 package helper
 ```
 
-So, all methods, variables and structs declared on arraylist2.go will be visible for main.go
+So, all methods, variables and structs declared on mylib.go will be visible for main.go
