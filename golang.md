@@ -21,7 +21,7 @@ main.go
 go.mod
 ```
 
-Then, say, you want to use Init() method of a struct List that is defined on mylib.go. For doing so, first go to main.go and call it by means of an instance of helper package, like this
+Then, say, you want to use `Init` method of a struct List that is defined on mylib.go. For doing so, first go to main.go and call it by means of an instance of helper package, like this
 
 ```go
 package main
@@ -29,7 +29,7 @@ import "exemplo.com/subdominio/helper"
 
 func main() {
 	var instance helper.List
-	instance.Init(10)
+	instance.Init()
 }
 ```
 
