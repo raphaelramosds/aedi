@@ -18,32 +18,10 @@ type LinkedStack struct {
 
 // TODO insert af beginning since it's a linked stack
 func (ls *LinkedStack) Push(value int) {
-	newNode := Node{value, nil}
-	curr := ls.head
-	if curr != nil {
-		for curr.next != nil {
-			curr = curr.next
-		}
-		curr.next = &newNode
-	} else {
-		ls.head = &newNode
-	}
-	ls.size++
 }
 
 // TODO pop at beginning since it's a linked stack
 func (ls *LinkedStack) Pop() (int, error) {
-	if ls.size == 0 {
-		return -1, errors.New("stack is empty")
-	} else {
-		curr := ls.head
-		for i := 0; i < ls.size-1; i++ {
-			curr = curr.next
-		}
-		curr.next = nil
-		ls.size--
-		return curr.value, nil
-	}
 }
 
 func (ls *LinkedStack) Peek() (int, error) {
